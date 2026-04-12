@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luminous Prep - AI Mock Interview</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#862dd4",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#2c0051",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "secondary": "#4648d4",
+                        "primary": "#3525cd",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#f0dbff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface": "#191c1e",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "inverse-primary": "#c3c0ff",
+                        "on-primary-container": "#dad7ff",
+                        "surface-container": "#eceef0",
+                        "outline": "#777587",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#4f46e5",
+                        "surface-dim": "#d8dadc",
+                        "tertiary": "#6b00b7",
+                        "on-tertiary-container": "#ebd2ff",
+                        "outline-variant": "#c7c4d8",
+                        "secondary-container": "#6063ee",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary-fixed": "#07006c",
+                        "on-primary-fixed": "#0f0069",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#4d44e3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "on-surface-variant": "#464555"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift { background-color: #f2f4f6; }
+        .tonal-transition-surface { background-color: rgba(255, 255, 255, 0.8); }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex">
+<!-- SideNavBar (NavigationDrawer) -->
+<aside class="hidden md:flex h-screen w-72 flex-col py-8 px-4 gap-2 bg-slate-50 border-r-0 sticky top-0">
+<div class="mb-8 px-4">
+<span class="text-xl font-bold text-slate-900">Luminous Prep</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-4 mb-6">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container-high">
+<img alt="Alex Rivers" data-alt="Professional headshot of a young engineering student Alex Rivers with a friendly expression and soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9WUUPDdnSK_Ky3c5eifuAjqJ5ab3ktVgapCRqEldzbJ_dAFLOjANEdeiKM9HTXagBB1uk1WeNeFHjOsAqlzr4KOMcjSW45hMfBTmMrgQzIC5OmPiXqnOX6WxTOktvz50LLGQkx_AGfH3yk5B25NyN4X63JqerPH5G9Arph6OznjYAP7Pc0UAgPRJ6l62apuTul0ERA7YtJV4ALhBr39vGIpqnCsJQy_-VsdxG6bcxrI3g5iqr3lLc-2IfXFcC8_FyZBfouX7DWvM"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[13px] font-bold text-on-surface">Alex Rivers</span>
+<span class="text-[11px] text-on-surface-variant">Engineering Candidate</span>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-200 rounded-lg transition-all font-semibold text-[13px]" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 bg-white text-indigo-700 rounded-lg shadow-sm px-4 py-3 transition-all font-bold text-[13px]" href="#">
+<span class="material-symbols-outlined">mic_external_on</span> Mock Interviews
+            </a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-200 rounded-lg transition-all font-semibold text-[13px]" href="#">
+<span class="material-symbols-outlined">map</span> Skill Roadmap
+            </a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-200 rounded-lg transition-all font-semibold text-[13px]" href="#">
+<span class="material-symbols-outlined">work</span> Job Board
+            </a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-200 rounded-lg transition-all font-semibold text-[13px]" href="#">
+<span class="material-symbols-outlined">school</span> Mentorship
+            </a>
+</nav>
+<div class="mt-auto flex flex-col gap-1">
+<button class="bg-indigo-600 text-white rounded-lg py-3 px-4 font-bold text-sm mb-4 transition-transform active:scale-95 shadow-lg shadow-indigo-200">
+                Start Practice
+            </button>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-200 rounded-lg transition-all font-semibold text-[13px]" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-200 rounded-lg transition-all font-semibold text-[13px]" href="#">
+<span class="material-symbols-outlined">help</span> Help Center
+            </a>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-h-screen relative">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-0 md:left-72 z-50 bg-white/80 backdrop-blur-xl h-20 shadow-[0_12px_32px_-4px_rgba(73,70,229,0.06)]">
+<div class="flex justify-between items-center w-full px-8 h-full max-w-7xl mx-auto">
+<h1 class="text-2xl font-black tracking-tighter text-indigo-700">Interview Session</h1>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex gap-8 items-center">
+<a class="text-slate-500 text-sm font-medium hover:text-indigo-600 transition-colors" href="#">Programs</a>
+<a class="text-slate-500 text-sm font-medium hover:text-indigo-600 transition-colors" href="#">Mentors</a>
+<a class="text-indigo-700 font-bold border-b-2 border-indigo-600 pb-1 text-sm" href="#">Practice</a>
+<a class="text-slate-500 text-sm font-medium hover:text-indigo-600 transition-colors" href="#">Resources</a>
+</nav>
+<div class="flex gap-3">
+<button class="text-indigo-600 font-medium text-sm px-4 py-2 rounded-lg border border-outline-variant/15 hover:bg-slate-50">Save Progress</button>
+<button class="bg-primary text-white font-bold text-sm px-6 py-2 rounded-lg shadow-sm transition-transform active:scale-95">Finish Session</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-24 pb-12 px-8 max-w-7xl mx-auto w-full grid grid-cols-12 gap-8">
+<!-- Left Column: Role & Chat -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<!-- Role Selector Header -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-primary-container/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-on-surface">Senior Software Engineer</h2>
+<p class="text-xs text-on-surface-variant font-medium">Technical &amp; Behavioral Round</p>
+</div>
+</div>
+<button class="flex items-center gap-2 text-primary font-bold text-sm bg-surface-container-low px-4 py-2 rounded-lg hover:bg-surface-container-high transition-colors">
+                            Change Role <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</section>
+<!-- Interview Interface -->
+<section class="bg-surface-container-lowest rounded-xl flex flex-col h-[600px] shadow-sm relative overflow-hidden">
+<!-- Chat History -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- AI Message -->
+<div class="flex gap-4 max-w-[85%]">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-5 rounded-r-2xl rounded-bl-2xl">
+<p class="text-[15px] leading-relaxed text-on-surface">"That's a solid architectural overview. Now, considering the scale we've discussed, how would you handle eventual consistency in a distributed system where high availability is the priority?"</p>
+<span class="text-[10px] text-on-surface-variant mt-3 block font-bold tracking-widest uppercase">AI Interviewer • 2:14 PM</span>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex gap-4 flex-row-reverse max-w-[85%] ml-auto">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
+<img alt="Alex" data-alt="Close up of Alex Rivers in a minimalist workspace responding to an interview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApaEZmUFVMfYeuDxl1XliHQ1QkV4v_SbevdlXbZI6WK_caas2SMPxODuK-GQ3jczCi6sa7EIYc4HxU3w8TKk-2r2qFGq1l9cY9ROWzRVjVGvfio4oE6YOpBVDldMAPe32ScrUcWrT7ATtRgHmJL6nMH1AbwNaauUjvqiqlar9SLh7r_DEs1vt9vNVckiktx74SyEGvuhzMaVu_2XH1yHRaa0GBm5PKFYZOQZlR_Aq1S2OkhLpLC56nfveBSE_OQSeitFqry72XSSM"/>
+</div>
+<div class="bg-primary-container text-white p-5 rounded-l-2xl rounded-br-2xl">
+<p class="text-[15px] leading-relaxed">"To address eventual consistency while prioritizing availability, I'd likely leverage a Conflict-free Replicated Data Type (CRDT) or a last-write-wins strategy, depending on the business logic..."</p>
+<span class="text-[10px] text-on-primary-container mt-3 block font-bold tracking-widest uppercase">You • 2:15 PM</span>
+</div>
+</div>
+<!-- AI Response (Typing/Thinking) -->
+<div class="flex gap-4 max-w-[85%]">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary">smart_toy</span>
+</div>
+<div class="bg-surface-container-low px-5 py-4 rounded-r-2xl rounded-bl-2xl flex items-center gap-2">
+<div class="w-2 h-2 bg-tertiary rounded-full animate-bounce"></div>
+<div class="w-2 h-2 bg-tertiary rounded-full animate-bounce [animation-delay:0.2s]"></div>
+<div class="w-2 h-2 bg-tertiary rounded-full animate-bounce [animation-delay:0.4s]"></div>
+</div>
+</div>
+</div>
+<!-- Voice / Input Controls -->
+<div class="p-6 bg-surface-bright/80 backdrop-blur-md border-t border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="flex-1 relative">
+<input class="w-full bg-surface-container-high border-0 rounded-lg px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Type your response here..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container-high rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<button class="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-[0_12px_32px_-4px_rgba(73,70,229,0.3)] transition-transform active:scale-95">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Feedback & Stats -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- Video Preview / Avatar -->
+<section class="aspect-video bg-inverse-surface rounded-xl overflow-hidden relative shadow-lg">
+<img alt="Camera Preview" class="w-full h-full object-cover opacity-80" data-alt="User POV view of a professional high-definition video camera setup in a bright home office, blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAYaD_DwYOo_Xsw6mbWyst3M2SlFQjxo9YB1ElPcaX4UqXxpB-gS7z_lqyB1zw2MVIlstha8rrdhNKK1dx4Kw4GnJam_7OmwcnojUf2PqCa0w8V12EUoqikO4G-s0CECeVFRFb8BOkt61p0OzWvoytlvmK0E8t5MbTUpJdK1C0qbQEl-Kp0takHj6y55bh2bUhCPv4ngQqkpYmezyjDbtifOouOzvx8V4gHs7QBL23h2FRGv2Q2iCy1c-zASE5e7x1vrupMizwDl8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-center text-white">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-red-500 rounded-full"></span>
+<span class="text-xs font-bold tracking-widest uppercase">REC • 00:15:42</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 bg-white/20 backdrop-blur-md rounded-lg"><span class="material-symbols-outlined text-sm">videocam</span></button>
+<button class="p-1.5 bg-white/20 backdrop-blur-md rounded-lg"><span class="material-symbols-outlined text-sm">settings</span></button>
+</div>
+</div>
+</section>
+<!-- Feedback Panel -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-col gap-6">
+<h3 class="text-sm font-black text-on-surface flex items-center gap-2 uppercase tracking-wider">
+<span class="material-symbols-outlined text-tertiary">bolt</span> Real-time Analysis
+                    </h3>
+<div class="space-y-4">
+<!-- Confidence Gauge -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-xs font-bold text-on-surface-variant">Confidence Level</label>
+<span class="text-xs font-black text-primary">84%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-primary w-[84%] rounded-full"></div>
+</div>
+</div>
+<!-- Clarity Gauge -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-xs font-bold text-on-surface-variant">Answer Clarity</label>
+<span class="text-xs font-black text-tertiary">72%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary-container to-tertiary w-[72%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- AI Insights List -->
+<div class="space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<p class="text-xs text-on-surface-variant leading-relaxed"><span class="font-bold text-on-surface">Strong Intro:</span> Your explanation of microservices isolation was concise and technical.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-amber-500 text-lg">lightbulb</span>
+<p class="text-xs text-on-surface-variant leading-relaxed"><span class="font-bold text-on-surface">Pacing Tip:</span> You're speaking slightly fast (155 wpm). Aim for 130 wpm for better clarity.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-lg">psychology</span>
+<p class="text-xs text-on-surface-variant leading-relaxed"><span class="font-bold text-on-surface">Keywords:</span> You've successfully used "Idempotency" and "Partitioning".</p>
+</div>
+</div>
+</section>
+<!-- Help/Tips -->
+<section class="bg-indigo-50/50 rounded-xl p-6 border border-indigo-100/30">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-indigo-600">info</span>
+<div>
+<h4 class="text-sm font-bold text-indigo-900 mb-1">Interview Tip</h4>
+<p class="text-xs text-indigo-700/80 leading-relaxed">Remember to use the STAR method (Situation, Task, Action, Result) when describing past projects to maintain structured flow.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto w-full border-t border-slate-100">
+<div class="flex flex-col md:flex-row justify-between items-center py-12 px-8 max-w-7xl mx-auto w-full">
+<p class="font-manrope text-xs text-slate-400 mb-4 md:mb-0">© 2024 Luminous Clarity. Empowering the next generation of talent.</p>
+<div class="flex gap-8">
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Terms of Service</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Cookie Policy</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Mobile Navigation Bar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-8px_20px_rgba(0,0,0,0.05)] h-16 flex items-center justify-around px-4 z-[100]">
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-indigo-600">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">mic_external_on</span>
+<span class="text-[10px] font-bold">Practice</span>
+</button>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-xl">map</span>
+<span class="text-[10px] font-bold">Roadmap</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-xl">school</span>
+<span class="text-[10px] font-bold">Mentor</span>
+</button>
+</nav>
+</body></html>

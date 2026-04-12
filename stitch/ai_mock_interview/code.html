@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Mock Interview | PlacementAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#4f46e5",
+                        "surface-container": "#171f33",
+                        "primary": "#c3c0ff",
+                        "on-primary": "#1d00a5",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-surface-variant": "#c7c4d8",
+                        "on-secondary-container": "#c4abff",
+                        "on-surface": "#dae2fd",
+                        "outline-variant": "#464555",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-tertiary-container": "#b8e0ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "on-tertiary-fixed": "#001e2f",
+                        "outline": "#918fa1",
+                        "surface-tint": "#c3c0ff",
+                        "secondary": "#d0bcff",
+                        "surface-container-lowest": "#060e20",
+                        "on-error": "#690005",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "secondary-fixed": "#e9ddff",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "tertiary-container": "#006693",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#131b2e",
+                        "tertiary": "#89ceff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-background": "#dae2fd",
+                        "surface": "#0b1326",
+                        "surface-variant": "#2d3449",
+                        "inverse-primary": "#4d44e3",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-dim": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "secondary-container": "#571bc1",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary": "#3c0091",
+                        "on-primary-container": "#dad7ff",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#0f0069",
+                        "on-tertiary": "#00344d",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-high": "#222a3d",
+                        "secondary-fixed-dim": "#d0bcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-edge {
+            box-shadow: inset 0 0 0 0.5px rgba(195, 192, 255, 0.1);
+        }
+        .glow-track {
+            box-shadow: 0 0 12px #89ceff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container/30">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col py-4 border-r border-[#464555]/15 z-40 hidden md:flex">
+<div class="text-xl font-black text-white px-6 py-8 font-headline">PlacementAI</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+                Resume Analyzer
+            </a>
+<!-- Active State: Mock Interview -->
+<a class="border-l-2 border-[#4f46e5] text-[#c3c0ff] bg-gradient-to-r from-[#4f46e5]/10 to-transparent py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium translate-x-1" href="#">
+<span class="material-symbols-outlined">settings_voice</span>
+                Mock Interview
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined">code</span>
+                Coding Practice
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                Aptitude
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+                Analytics
+            </a>
+</nav>
+<div class="px-6 py-6">
+<button class="w-full bg-gradient-to-r from-primary-container to-secondary-container text-white py-3 rounded-xl font-headline font-bold text-sm transition-transform active:scale-95">
+                Upgrade to Pro
+            </button>
+</div>
+<div class="border-t border-[#464555]/15 pt-4">
+<a class="text-slate-400 py-2 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="text-slate-400 py-2 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white" href="#">
+<span class="material-symbols-outlined">help</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen p-6 md:p-10">
+<!-- Hero Section / Header -->
+<header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<h1 class="font-headline text-5xl font-bold tracking-tight text-on-surface mb-4">
+                    AI Mock <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Interview</span>
+</h1>
+<p class="text-on-surface-variant font-body text-lg">
+                    Refine your presence. Receive real-time critique on your technical depth, soft skills, and body language.
+                </p>
+</div>
+<!-- Role Selector: Bento-style -->
+<div class="flex bg-surface-container-low p-1.5 rounded-full glass-edge">
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-primary font-headline text-sm font-semibold shadow-lg">Frontend</button>
+<button class="px-6 py-2 rounded-full text-slate-400 font-headline text-sm font-semibold hover:text-on-surface">Backend</button>
+<button class="px-6 py-2 rounded-full text-slate-400 font-headline text-sm font-semibold hover:text-on-surface">Data Analyst</button>
+</div>
+</header>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: Interview Interaction (Chat & Question) -->
+<section class="lg:col-span-7 flex flex-col gap-6">
+<!-- Question Card -->
+<div class="bg-surface-container-low rounded-xl p-8 glass-edge relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="label-SM bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">QUESTION 4/12</span>
+</div>
+<div class="flex items-start gap-4 mb-6">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<h3 class="text-on-surface-variant font-label text-xs uppercase tracking-widest mb-1">Current Scenario</h3>
+<p class="font-headline text-xl font-semibold leading-relaxed">
+                                "Explain the difference between Shadow DOM and Virtual DOM. When would you prioritize performance optimization over readability in a React application?"
+                            </p>
+</div>
+</div>
+<!-- AI Progress Indicator -->
+<div class="mt-8">
+<div class="flex justify-between text-xs font-label text-slate-400 mb-2">
+<span>REMAINING TIME</span>
+<span>01:42</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-tertiary glow-track rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Chat/Transcript Interface -->
+<div class="bg-surface-container-low rounded-xl flex flex-col h-[500px] glass-edge">
+<div class="p-4 border-b border-outline-variant/15 flex items-center justify-between">
+<span class="font-headline text-sm font-bold text-slate-300">Live Transcript</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+<span class="text-[10px] font-label text-red-500 uppercase">Live Processing</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- AI Message -->
+<div class="flex gap-4 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xs text-primary">psychology</span>
+</div>
+<div class="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
+<p class="text-sm text-on-surface-variant leading-relaxed">Let's start with your background. Can you describe a complex frontend architectural challenge you've solved recently?</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex gap-4 max-w-[85%] ml-auto flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xs text-white">person</span>
+</div>
+<div class="bg-primary-container/20 p-4 rounded-2xl rounded-tr-none border border-primary/10">
+<p class="text-sm text-primary leading-relaxed">In my last project, I managed a migration from a monolithic structure to micro-frontends. We used Module Federation to ensure seamless communication between apps while maintaining isolation...</p>
+</div>
+</div>
+<!-- AI Follow up -->
+<div class="flex gap-4 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xs text-primary">psychology</span>
+</div>
+<div class="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
+<p class="text-sm text-on-surface-variant leading-relaxed">Interesting. How did you handle shared state management between those micro-apps without creating tight coupling?</p>
+</div>
+</div>
+</div>
+<!-- Voice Recording Control -->
+<div class="p-6 bg-surface-container-highest/30 rounded-b-xl flex flex-col items-center justify-center gap-4">
+<div class="flex items-center gap-8">
+<button class="w-12 h-12 rounded-full bg-surface-bright flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-container to-secondary-container flex items-center justify-center text-white shadow-[0_0_40px_rgba(79,70,229,0.4)] hover:scale-105 transition-transform group">
+<span class="material-symbols-outlined text-4xl group-active:scale-90 transition-transform" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-surface-bright flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">stop</span>
+</button>
+</div>
+<p class="font-label text-xs text-slate-500 uppercase tracking-widest">Tap mic to start speaking</p>
+</div>
+</div>
+</section>
+<!-- Right: Feedback & Insights (High Density) -->
+<section class="lg:col-span-5 flex flex-col gap-6">
+<!-- Live Video/Avatar Placeholder -->
+<div class="aspect-video bg-black rounded-xl overflow-hidden relative group glass-edge">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="Modern home office setting with soft professional lighting, showing a young professional woman in front of a laptop webcam" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwpiRj8ppqtAGiWnEsN4d6AHySwfLy1UEU7fbw9IctbMVjtQxMp0epJU1i_O_GU-CencVbU47uW8EULIS2Sm94ZG_Cp-JY7QV46lkDdvFgZS2TVwhTmWp2oSP3ecIoG2ixHMXmUBl15JSE6eTAjG6e1sfMk1tQ6aWp4qIBcDs0MkxtZz3SZl7AuLsKzO2Y5a60RSAlkJA9NyUjpX5yUE1Xehic418lFX0U023Cf2LiE7dp_4MC0D9ZphducAFTqZfvvZPscGaz8xI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+<span class="text-xs font-bold text-white font-headline">Webcam: Active</span>
+</div>
+</div>
+<!-- AI Insights Panel -->
+<div class="bg-surface-container-low rounded-xl p-6 glass-edge">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline font-bold text-lg">AI Performance Metrics</h2>
+<span class="material-symbols-outlined text-tertiary">query_stats</span>
+</div>
+<div class="space-y-6">
+<!-- Metric Card -->
+<div class="p-4 bg-surface-container-high rounded-lg hover:scale-[1.02] transition-all duration-300 cursor-default">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs text-slate-400 uppercase">Technical Accuracy</span>
+<span class="font-headline font-bold text-primary">88%</span>
+</div>
+<div class="h-1.5 bg-background rounded-full overflow-hidden">
+<div class="h-full w-[88%] bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Metric Card -->
+<div class="p-4 bg-surface-container-high rounded-lg hover:scale-[1.02] transition-all duration-300 cursor-default">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs text-slate-400 uppercase">Communication Clarity</span>
+<span class="font-headline font-bold text-tertiary">74%</span>
+</div>
+<div class="h-1.5 bg-background rounded-full overflow-hidden">
+<div class="h-full w-[74%] bg-tertiary rounded-full"></div>
+</div>
+</div>
+<!-- Metric Card -->
+<div class="p-4 bg-surface-container-high rounded-lg hover:scale-[1.02] transition-all duration-300 cursor-default">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs text-slate-400 uppercase">Confidence &amp; Pace</span>
+<span class="font-headline font-bold text-on-secondary-container">91%</span>
+</div>
+<div class="h-1.5 bg-background rounded-full overflow-hidden">
+<div class="h-full w-[91%] bg-secondary rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/15">
+<h3 class="font-headline font-semibold text-sm mb-4">Real-time Observations</h3>
+<div class="space-y-3">
+<div class="flex items-start gap-3 p-3 bg-surface-container-highest/40 rounded-lg">
+<span class="material-symbols-outlined text-primary text-lg">info</span>
+<p class="text-xs text-on-surface-variant">Your pace is slightly fast. Try to pause for 2 seconds after finishing a key point.</p>
+</div>
+<div class="flex items-start gap-3 p-3 bg-surface-container-highest/40 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-lg">check_circle</span>
+<p class="text-xs text-on-surface-variant">Great articulation on the Module Federation architecture. Technical depth is solid.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Action -->
+<button class="w-full py-4 rounded-xl border border-primary/20 bg-primary/5 text-primary font-headline font-bold hover:bg-primary/10 transition-colors">
+                    End Session &amp; Generate Full Report
+                </button>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="md:ml-64 bg-[#0b1326] w-full py-12 border-t border-[#464555]/15">
+<div class="flex flex-col items-center gap-4 w-full px-8">
+<p class="font-inter text-xs text-slate-500">© 2024 PlacementAI. Precision Engineered for Careers.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 font-inter text-xs hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 font-inter text-xs hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 font-inter text-xs hover:text-slate-300 transition-colors" href="#">Cookie Policy</a>
+</div>
+</div>
+</footer>
+</body></html>

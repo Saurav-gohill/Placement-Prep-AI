@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PlacementAI | Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-container": "#4f46e5",
+                "surface-container": "#171f33",
+                "primary": "#c3c0ff",
+                "on-primary": "#1d00a5",
+                "background": "#0b1326",
+                "surface-container-highest": "#2d3449",
+                "on-surface-variant": "#c7c4d8",
+                "on-secondary-container": "#c4abff",
+                "on-surface": "#dae2fd",
+                "outline-variant": "#464555",
+                "inverse-surface": "#dae2fd",
+                "tertiary-fixed": "#c9e6ff",
+                "on-tertiary-container": "#b8e0ff",
+                "on-tertiary-fixed-variant": "#004c6e",
+                "on-tertiary-fixed": "#001e2f",
+                "outline": "#918fa1",
+                "surface-tint": "#c3c0ff",
+                "secondary": "#d0bcff",
+                "surface-container-lowest": "#060e20",
+                "on-error": "#690005",
+                "primary-fixed": "#e2dfff",
+                "on-secondary-fixed-variant": "#5516be",
+                "secondary-fixed": "#e9ddff",
+                "tertiary-fixed-dim": "#89ceff",
+                "tertiary-container": "#006693",
+                "on-error-container": "#ffdad6",
+                "surface-container-low": "#131b2e",
+                "tertiary": "#89ceff",
+                "primary-fixed-dim": "#c3c0ff",
+                "on-background": "#dae2fd",
+                "surface": "#0b1326",
+                "surface-variant": "#2d3449",
+                "inverse-primary": "#4d44e3",
+                "error-container": "#93000a",
+                "on-secondary-fixed": "#23005c",
+                "surface-dim": "#0b1326",
+                "surface-bright": "#31394d",
+                "secondary-container": "#571bc1",
+                "on-primary-fixed-variant": "#3323cc",
+                "on-secondary": "#3c0091",
+                "on-primary-container": "#dad7ff",
+                "error": "#ffb4ab",
+                "on-primary-fixed": "#0f0069",
+                "on-tertiary": "#00344d",
+                "inverse-on-surface": "#283044",
+                "surface-container-high": "#222a3d",
+                "secondary-fixed-dim": "#d0bcff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        body { background-color: #0b1326; color: #dae2fd; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-edge { border: 0.5px solid rgba(195, 192, 255, 0.1); }
+        .glow-track { box-shadow: 0 0 12px #89ceff; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col border-r border-[#464555]/15 z-40 hidden md:flex">
+<div class="text-xl font-black text-white px-6 py-8 font-headline tracking-tighter">
+            PlacementAI
+        </div>
+<nav class="flex-1 px-3 space-y-1">
+<!-- Active: Dashboard -->
+<a class="border-l-2 border-[#4f46e5] text-[#c3c0ff] bg-gradient-to-r from-[#4f46e5]/10 to-transparent py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium transition-transform duration-200 translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Resume Analyzer
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings_voice">settings_voice</span>
+                Mock Interview
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+                Coding Practice
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                Aptitude
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+                Analytics
+            </a>
+</nav>
+<div class="px-6 py-4 mt-auto space-y-1">
+<div class="bg-gradient-to-br from-secondary-container to-primary-container p-4 rounded-xl mb-6">
+<p class="text-xs font-bold text-white mb-2 uppercase tracking-widest">Upgrade to Pro</p>
+<p class="text-[10px] text-white/80 mb-3 leading-relaxed">Unlock advanced AI analysis and unlimited coding mock tests.</p>
+<button class="w-full bg-white text-[#1d00a5] py-2 rounded-lg text-xs font-bold hover:bg-slate-100 transition-colors">Claim Offer</button>
+</div>
+<a class="text-slate-500 py-2 flex items-center gap-3 text-xs font-medium hover:text-slate-300" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="text-slate-500 py-2 flex items-center gap-3 text-xs font-medium hover:text-slate-300" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 h-screen overflow-y-auto no-scrollbar bg-surface relative">
+<!-- Top Header Component -->
+<header class="sticky top-0 z-30 bg-[#0b1326]/60 backdrop-blur-xl flex justify-between items-center w-full px-8 py-4">
+<div class="flex items-center gap-4">
+<h1 class="font-headline font-bold text-xl tracking-tight text-on-surface">Dashboard Overview</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/15">
+<span class="material-symbols-outlined text-slate-400 text-lg" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-slate-500 w-48" placeholder="Search insights..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-white">Alex Chen</p>
+<p class="text-[10px] text-primary uppercase font-bold tracking-widest">Premium Member</p>
+</div>
+<img alt="Alex Chen" class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="Close-up portrait of a young professional man with a friendly expression in soft studio lighting, professional headshot style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwoGG23h8yvVbedaMLvPXaVi3AIgvxU1I8YmKfGV14N0OBQ80l4D5o95UZVfRPJv-Liy9fQYkQUArZxHiAxipP9FRGXDSt65to5myYMizbCgCNLkoqMzZmxs5JZ4eMJvkSQ-qAB-2z3NbXlRhbPfSCeoCEcP2AnT68NoXv2BfbnRvLT2zzs4g51udbjNgwvPbB14QqwT0f0BbWuBk9FVYRzsZnwfRIH91f1iM-QcJvW_OcPQSKimVZbmhAwNQfBhK-ZO1dyx4D8Yo"/>
+</div>
+</div>
+</header>
+<section class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- Hero Stats / Bento Header -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 relative overflow-hidden bg-surface-container-low rounded-xl p-8 glass-edge">
+<div class="relative z-10">
+<span class="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Predictive Insight</span>
+<h2 class="font-headline text-3xl font-bold mt-4 mb-2 max-w-md">You're in the top 5% of candidates for FAANG roles.</h2>
+<p class="text-on-surface-variant text-sm mb-6 max-w-sm">Based on your recent Coding Practice and Mock Interview performance. Keep up the momentum.</p>
+<button class="bg-gradient-to-r from-primary-container to-secondary-container px-6 py-2.5 rounded-xl font-bold text-sm text-white shadow-lg shadow-primary-container/20 hover:scale-[1.02] transition-transform">View Career Roadmap</button>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -right-16 -bottom-16 w-64 h-64 bg-primary-container/10 blur-[80px] rounded-full"></div>
+<div class="absolute right-8 top-8 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-xl p-6 flex flex-col justify-between glass-edge">
+<div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">ATS Resume Score</p>
+<div class="flex items-end gap-2">
+<span class="text-5xl font-headline font-extrabold text-white">84</span>
+<span class="text-slate-500 mb-2">/100</span>
+</div>
+</div>
+<div class="mt-6">
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[84%] bg-tertiary glow-track"></div>
+</div>
+<p class="text-[10px] text-slate-400 mt-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-emerald-400" data-icon="trending_up">trending_up</span>
+                            +12 pts improvement from last week
+                        </p>
+</div>
+</div>
+</div>
+<!-- Performance Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Coding Practice -->
+<div class="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-400" data-icon="code">code</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Active</span>
+</div>
+<h3 class="text-sm font-semibold text-white mb-1">Coding Practice</h3>
+<p class="text-[10px] text-slate-500 mb-4">Advanced Algorithms</p>
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-[8px] border-2 border-surface">JS</div>
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-[8px] border-2 border-surface">PY</div>
+</div>
+<span class="text-[10px] text-slate-400">142 Solved</span>
+</div>
+</div>
+<!-- Interview Performance -->
+<div class="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-[#571bc1]/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#c4abff]" data-icon="settings_voice">settings_voice</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Feedback</span>
+</div>
+<h3 class="text-sm font-semibold text-white mb-1">Mock Interview</h3>
+<p class="text-[10px] text-slate-500 mb-4">Behavioral &amp; Technical</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-white">4.2/5.0</span>
+<div class="flex gap-0.5">
+<span class="w-1 h-3 bg-primary rounded-full"></span>
+<span class="w-1 h-3 bg-primary rounded-full"></span>
+<span class="w-1 h-3 bg-primary rounded-full"></span>
+<span class="w-1 h-3 bg-primary rounded-full"></span>
+<span class="w-1 h-3 bg-slate-700 rounded-full"></span>
+</div>
+</div>
+</div>
+<!-- Aptitude Score -->
+<div class="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-400" data-icon="psychology">psychology</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Locked</span>
+</div>
+<h3 class="text-sm font-semibold text-white mb-1">Aptitude Results</h3>
+<p class="text-[10px] text-slate-500 mb-4">Logical Reasoning</p>
+<div class="text-xs font-bold text-white flex items-center gap-2">
+                        92% <span class="text-[10px] font-normal text-slate-500">Percentile</span>
+</div>
+</div>
+<!-- Preparation Time -->
+<div class="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-sky-400" data-icon="timer">timer</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Stats</span>
+</div>
+<h3 class="text-sm font-semibold text-white mb-1">Weekly Prep</h3>
+<p class="text-[10px] text-slate-500 mb-4">Study streak: 8 days</p>
+<div class="text-xs font-bold text-white">24.5h <span class="text-[10px] font-normal text-slate-500">This week</span></div>
+</div>
+</div>
+<!-- Activity and Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Progress Chart Placeholder -->
+<div class="lg:col-span-2 bg-surface-container-low rounded-xl p-8 glass-edge">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-headline font-bold text-lg">Skill Growth</h3>
+<p class="text-xs text-slate-500">Performance tracking across domains</p>
+</div>
+<div class="flex gap-2">
+<button class="text-[10px] bg-surface-container-highest px-3 py-1 rounded-full text-slate-300">Week</button>
+<button class="text-[10px] bg-primary-container px-3 py-1 rounded-full text-white">Month</button>
+</div>
+</div>
+<!-- Chart Simulation -->
+<div class="relative h-64 flex items-end gap-4 px-2">
+<div class="absolute inset-0 flex flex-col justify-between py-2 border-l border-slate-800">
+<div class="w-full border-t border-slate-800/50"></div>
+<div class="w-full border-t border-slate-800/50"></div>
+<div class="w-full border-t border-slate-800/50"></div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 rounded-t h-[40%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-bright p-1 rounded hidden group-hover:block text-[8px]">40%</div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 rounded-t h-[60%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-bright p-1 rounded hidden group-hover:block text-[8px]">60%</div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 rounded-t h-[55%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-bright p-1 rounded hidden group-hover:block text-[8px]">55%</div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 rounded-t h-[85%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-bright p-1 rounded hidden group-hover:block text-[8px]">85%</div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 rounded-t h-[75%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-bright p-1 rounded hidden group-hover:block text-[8px]">75%</div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 rounded-t h-[95%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-bright p-1 rounded hidden group-hover:block text-[8px]">95%</div>
+</div>
+<div class="flex-1 bg-primary glow-track rounded-t h-[80%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-bright p-1 rounded hidden group-hover:block text-[8px]">Current</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-slate-500 font-bold uppercase tracking-wider px-2">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<!-- Recent Activity -->
+<div class="bg-surface-container-low rounded-xl p-8 glass-edge">
+<h3 class="font-headline font-bold text-lg mb-6">Recent Activity</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-[#571bc1]/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#c4abff] text-sm" data-icon="videocam">videocam</span>
+</div>
+<div>
+<p class="text-xs text-white font-medium">Completed Mock Interview</p>
+<p class="text-[10px] text-slate-500 mt-1">2 hours ago • Product Design Role</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-emerald-400 text-sm" data-icon="terminal">terminal</span>
+</div>
+<div>
+<p class="text-xs text-white font-medium">Solved "Graph Traversal"</p>
+<p class="text-[10px] text-slate-500 mt-1">5 hours ago • Hard Difficulty</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sky-400 text-sm" data-icon="edit">edit</span>
+</div>
+<div>
+<p class="text-xs text-white font-medium">Updated Resume Sections</p>
+<p class="text-[10px] text-slate-500 mt-1">Yesterday • Education &amp; Awards</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-orange-400 text-sm" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="text-xs text-white font-medium">Aptitude Test Completed</p>
+<p class="text-[10px] text-slate-500 mt-1">2 days ago • Score: 92%</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 text-[10px] font-bold text-primary uppercase tracking-widest hover:underline transition-all">View Full History</button>
+</div>
+</div>
+</section>
+<!-- Footer Component -->
+<footer class="w-full py-12 border-t border-[#464555]/15 bg-[#0b1326] mt-12">
+<div class="flex flex-col items-center gap-4 w-full px-8">
+<p class="font-inter text-xs text-slate-500">© 2024 PlacementAI. Precision Engineered for Careers.</p>
+<div class="flex gap-6">
+<a class="font-inter text-xs text-slate-500 hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+<a class="font-inter text-xs text-slate-500 hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+<a class="font-inter text-xs text-slate-500 hover:text-slate-300 transition-colors" href="#">Cookie Policy</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Bottom Nav for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0b1326]/80 backdrop-blur-lg border-t border-outline-variant/15 flex justify-around py-3 px-2 z-50">
+<a class="flex flex-col items-center gap-1 text-[#c3c0ff]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[8px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-[8px] font-bold">Resume</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+<span class="text-[8px] font-bold">Code</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined" data-icon="settings_voice">settings_voice</span>
+<span class="text-[8px] font-bold">Interview</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[8px] font-bold">Profile</span>
+</a>
+</nav>
+</body></html>

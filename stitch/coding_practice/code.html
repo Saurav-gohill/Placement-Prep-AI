@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coding Practice | PlacementAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#4f46e5",
+                        "surface-container": "#171f33",
+                        "primary": "#c3c0ff",
+                        "on-primary": "#1d00a5",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-surface-variant": "#c7c4d8",
+                        "on-secondary-container": "#c4abff",
+                        "on-surface": "#dae2fd",
+                        "outline-variant": "#464555",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-tertiary-container": "#b8e0ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "on-tertiary-fixed": "#001e2f",
+                        "outline": "#918fa1",
+                        "surface-tint": "#c3c0ff",
+                        "secondary": "#d0bcff",
+                        "surface-container-lowest": "#060e20",
+                        "on-error": "#690005",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "secondary-fixed": "#e9ddff",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "tertiary-container": "#006693",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#131b2e",
+                        "tertiary": "#89ceff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-background": "#dae2fd",
+                        "surface": "#0b1326",
+                        "surface-variant": "#2d3449",
+                        "inverse-primary": "#4d44e3",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-dim": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "secondary-container": "#571bc1",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary": "#3c0091",
+                        "on-primary-container": "#dad7ff",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#0f0069",
+                        "on-tertiary": "#00344d",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-high": "#222a3d",
+                        "secondary-fixed-dim": "#d0bcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .code-editor-bg {
+            background: linear-gradient(180deg, #131b2e 0%, #0b1326 100%);
+        }
+        .glass-edge {
+            box-shadow: inset 0 0 0 0.5px rgba(195, 192, 255, 0.1);
+        }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #0b1326; }
+        ::-webkit-scrollbar-thumb { background: #464555; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden h-screen flex">
+<!-- Sidebar Navigation (SideNavBar Anchor) -->
+<aside class="h-screen w-64 bg-[#131b2e] border-r border-[#464555]/15 flex flex-col py-4 shrink-0 hidden md:flex">
+<div class="text-xl font-black text-white px-6 py-8 font-headline">PlacementAI</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 hover:text-white hover:bg-[#222a3d] transition-colors font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 hover:text-white hover:bg-[#222a3d] transition-colors font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span> Resume Analyzer
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 hover:text-white hover:bg-[#222a3d] transition-colors font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="settings_voice">settings_voice</span> Mock Interview
+            </a>
+<a class="border-l-2 border-[#4f46e5] text-[#c3c0ff] bg-gradient-to-r from-[#4f46e5]/10 to-transparent py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium transition-transform duration-200 translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span> Coding Practice
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 hover:text-white hover:bg-[#222a3d] transition-colors font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span> Aptitude
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 hover:text-white hover:bg-[#222a3d] transition-colors font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span> Analytics
+            </a>
+</nav>
+<div class="px-6 py-4 mt-auto">
+<div class="bg-gradient-to-br from-primary-container to-secondary-container p-4 rounded-xl mb-6">
+<div class="text-xs font-bold uppercase tracking-wider text-on-primary-container/80 mb-1">Membership</div>
+<div class="text-sm font-bold text-white mb-3">Upgrade to Pro</div>
+<button class="w-full py-2 bg-white/10 backdrop-blur-md rounded-lg text-xs font-bold hover:bg-white/20 transition-all">Unlock Premium</button>
+</div>
+<div class="flex items-center gap-3 px-2 mb-4">
+<div class="w-8 h-8 rounded-full bg-surface-bright flex items-center justify-center border border-outline-variant/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a young professional man with a friendly smile wearing a business casual shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc0O5Vm0FMdoVuOC7rIkdIzRedsc3lel_PBqHDAxnVygenXjpjKS_zV42M7Lq4Ffun8B9EfynjkHTKJiSOPeHC8YRspKh5jzo_BwvrkfDrQTaznHt2aHPYlmKV-xPqv1r1RwF6aRieLVXAH0H7GWpNXiJH2NvRWu0ZI0sbRVRcobIq2WhKUceUN_myHVF5Dt9cvkTrqPt2kXtc6efrHgL5nGVO5XmxnbT3XbMK0XhcsWL0eCTCuS5OZxnwlf8A3yL4TpMXJR4hVkc"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="text-sm font-bold truncate">Alex Chen</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-tighter">Premium Member</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-background">
+<!-- Header (TopNavBar Anchor Adaptation) -->
+<header class="flex items-center justify-between px-6 py-3 bg-[#0b1326]/60 backdrop-blur-xl border-b border-outline-variant/10 z-10">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="text-primary-container material-symbols-outlined text-2xl" data-icon="terminal">terminal</span>
+<h1 class="font-headline font-bold text-lg tracking-tight">Median of Two Sorted Arrays</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 bg-surface-container-high px-3 py-1.5 rounded-full border border-outline-variant/10">
+<span class="material-symbols-outlined text-sm text-tertiary" data-icon="timer">timer</span>
+<span class="text-xs font-manrope font-semibold text-on-surface-variant">42:15</span>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="bg-gradient-to-r from-primary-container to-secondary-container px-6 py-2 rounded-xl text-sm font-bold hover:opacity-90 active:scale-95 transition-all">Submit Solution</button>
+</div>
+</header>
+<!-- Editor & Panel Grid -->
+<div class="flex-1 flex overflow-hidden p-2 gap-2">
+<!-- Left: Problem List/Description (Tonal Shifted Surface) -->
+<section class="w-1/3 min-w-[320px] bg-surface-container-low rounded-xl flex flex-col overflow-hidden border border-outline-variant/5">
+<div class="flex border-b border-outline-variant/10">
+<button class="flex-1 py-3 text-xs font-bold text-primary border-b-2 border-primary bg-surface-container-high/50">Description</button>
+<button class="flex-1 py-3 text-xs font-bold text-on-surface-variant/60 hover:text-on-surface-variant transition-colors">Solutions</button>
+<button class="flex-1 py-3 text-xs font-bold text-on-surface-variant/60 hover:text-on-surface-variant transition-colors">Submissions</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded bg-error-container/20 text-error text-[10px] font-bold tracking-widest uppercase">Hard</span>
+<span class="text-xs text-on-surface-variant">ID: 004</span>
+<span class="ml-auto material-symbols-outlined text-slate-400 cursor-pointer" data-icon="bookmark">bookmark</span>
+</div>
+<div class="prose prose-invert max-w-none">
+<p class="text-on-surface font-body leading-relaxed text-sm">
+                            Given two sorted arrays <code class="bg-surface-container-highest px-1 py-0.5 rounded text-secondary">nums1</code> and <code class="bg-surface-container-highest px-1 py-0.5 rounded text-secondary">nums2</code> of size <code class="bg-surface-container-highest px-1 py-0.5 rounded text-secondary">m</code> and <code class="bg-surface-container-highest px-1 py-0.5 rounded text-secondary">n</code> respectively, return the <span class="text-primary font-bold">median</span> of the two sorted arrays.
+                        </p>
+<p class="text-on-surface font-body leading-relaxed text-sm mt-4">
+                            The overall run time complexity should be <code class="bg-surface-container-highest px-1 py-0.5 rounded text-primary-fixed-dim">O(log (m+n))</code>.
+                        </p>
+</div>
+<div class="space-y-4 pt-4">
+<div class="space-y-2">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Example 1</span>
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/5 font-mono text-xs leading-relaxed">
+<div class="mb-1"><span class="text-on-surface-variant/50">Input:</span> nums1 = [1,3], nums2 = [2]</div>
+<div class="mb-1"><span class="text-on-surface-variant/50">Output:</span> 2.00000</div>
+<div><span class="text-on-surface-variant/50">Explanation:</span> merged array = [1,2,3] and median is 2.</div>
+</div>
+</div>
+<div class="space-y-2">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Constraints</span>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-xs text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5"></span>
+<code>nums1.length == m</code>, <code>nums2.length == n</code>
+</li>
+<li class="flex items-start gap-2 text-xs text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5"></span>
+<code>0 &lt;= m, n &lt;= 1000</code>
+</li>
+<li class="flex items-start gap-2 text-xs text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5"></span>
+<code>-10^6 &lt;= nums1[i], nums2[i] &lt;= 10^6</code>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Center: Monaco-Style Editor -->
+<section class="flex-1 flex flex-col bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/5">
+<div class="flex items-center justify-between px-4 py-2 bg-surface-container-high/50 border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<div class="bg-surface-container px-3 py-1 rounded text-xs font-manrope font-semibold text-primary-fixed-dim flex items-center gap-2">
+                            Python 3 <span class="material-symbols-outlined text-xs" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 hover:bg-surface-container-highest rounded-lg transition-colors" title="Format Code">
+<span class="material-symbols-outlined text-sm" data-icon="format_align_left">format_align_left</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-highest rounded-lg transition-colors" title="Reset Code">
+<span class="material-symbols-outlined text-sm" data-icon="restart_alt">restart_alt</span>
+</button>
+</div>
+</div>
+<div class="flex-1 code-editor-bg p-4 font-mono text-sm leading-relaxed overflow-hidden relative">
+<div class="absolute left-0 top-0 bottom-0 w-12 bg-surface-container-lowest/50 border-r border-outline-variant/5 flex flex-col items-center py-4 text-slate-600 select-none">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+</div>
+<div class="ml-10 space-y-1">
+<div><span class="text-[#ff79c6]">class</span> <span class="text-[#50fa7b]">Solution</span>:</div>
+<div class="pl-4"><span class="text-[#ff79c6]">def</span> <span class="text-[#50fa7b]">findMedianSortedArrays</span>(self, nums1: List[<span class="text-[#8be9fd]">int</span>], nums2: List[<span class="text-[#8be9fd]">int</span>]) -&gt; <span class="text-[#8be9fd]">float</span>:</div>
+<div class="pl-8 text-slate-500 italic"># Implement binary search on the shorter array</div>
+<div class="pl-8">A, B = nums1, nums2</div>
+<div class="pl-8"><span class="text-[#ff79c6]">if</span> <span class="text-[#8be9fd]">len</span>(B) &lt; <span class="text-[#8be9fd]">len</span>(A):</div>
+<div class="pl-12">A, B = B, A</div>
+<div class="pl-8"> </div>
+<div class="pl-8">total = <span class="text-[#8be9fd]">len</span>(A) + <span class="text-[#8be9fd]">len</span>(B)</div>
+<div class="pl-8">half = total // <span class="text-[#bd93f9]">2</span></div>
+<div class="pl-8"> </div>
+<div class="pl-8 text-slate-500 italic"># TODO: Partition logic here</div>
+<div class="pl-8"><span class="text-primary-container animate-pulse">|</span></div>
+</div>
+</div>
+<!-- Bottom Terminal / Test Cases -->
+<div class="h-48 bg-surface-container-lowest border-t border-outline-variant/15 flex flex-col">
+<div class="flex items-center gap-4 px-6 border-b border-outline-variant/10">
+<button class="py-2 text-[10px] font-bold uppercase tracking-widest text-primary border-b-2 border-primary">Test Cases</button>
+<button class="py-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-slate-300">Run History</button>
+<button class="ml-auto flex items-center gap-1 py-1 px-3 bg-surface-container-high rounded text-[10px] font-bold text-on-surface hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-xs" data-icon="play_arrow">play_arrow</span> Run Test
+                        </button>
+</div>
+<div class="flex-1 p-4 flex gap-4 overflow-x-auto">
+<div class="w-48 shrink-0 p-3 rounded-lg bg-surface-container-low border border-outline-variant/10 glass-edge">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-400">CASE 01</span>
+<span class="material-symbols-outlined text-xs text-tertiary" data-icon="check_circle">check_circle</span>
+</div>
+<div class="text-[10px] text-on-surface-variant font-mono">nums1 = [1,3]</div>
+<div class="text-[10px] text-on-surface-variant font-mono">nums2 = [2]</div>
+</div>
+<div class="w-48 shrink-0 p-3 rounded-lg bg-surface-container-low border border-outline-variant/10 opacity-60">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-400">CASE 02</span>
+<span class="material-symbols-outlined text-xs text-slate-600" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</div>
+<div class="text-[10px] text-on-surface-variant font-mono">nums1 = [1,2]</div>
+<div class="text-[10px] text-on-surface-variant font-mono">nums2 = [3,4]</div>
+</div>
+<div class="w-48 shrink-0 p-3 rounded-lg bg-surface-container-low border border-outline-variant/10 opacity-60">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-400">CASE 03</span>
+<span class="material-symbols-outlined text-xs text-slate-600" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</div>
+<div class="text-[10px] text-on-surface-variant font-mono">nums1 = [0,0]</div>
+<div class="text-[10px] text-on-surface-variant font-mono">nums2 = [0,0]</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Performance & AI Insights (Predictive Prism Aesthetic) -->
+<section class="w-72 hidden xl:flex flex-col gap-2">
+<!-- AI Insight Card -->
+<div class="bg-surface-container-high rounded-xl p-5 relative overflow-hidden border border-outline-variant/5 glass-edge group hover:scale-[1.02] transition-transform duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="relative z-10">
+<div class="text-xs font-bold text-primary mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span> AI RECOMMENDATION
+                        </div>
+<h4 class="text-sm font-bold mb-2">Optimize Space</h4>
+<p class="text-xs text-on-surface-variant/80 leading-relaxed">
+                            Your current approach uses <span class="text-on-surface font-semibold">O(m+n)</span> space. Consider a binary search partition to achieve <span class="text-on-surface font-semibold">O(1)</span> space complexity.
+                        </p>
+</div>
+</div>
+<!-- Skill Progress -->
+<div class="bg-surface-container-low rounded-xl p-5 flex-1 border border-outline-variant/5">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-6">Topic Mastery</h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-[10px] font-bold mb-2">
+<span class="text-on-surface-variant">Binary Search</span>
+<span class="text-tertiary">84%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary shadow-[0_0_8px_#89ceff]" style="width: 84%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-bold mb-2">
+<span class="text-on-surface-variant">Arrays</span>
+<span class="text-primary">92%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_8px_#c3c0ff]" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-bold mb-2">
+<span class="text-on-surface-variant">Complexity Analysis</span>
+<span class="text-secondary">67%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary shadow-[0_0_8px_#d0bcff]" style="width: 67%"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/10">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Upcoming Goals</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-surface-container-lowest/50">
+<span class="material-symbols-outlined text-sm text-tertiary" data-icon="trophy">trophy</span>
+<div class="text-[10px] font-semibold">Solve 5 Hard Problems</div>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg bg-surface-container-lowest/50">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="schedule">schedule</span>
+<div class="text-[10px] font-semibold">Maintain 7-day Streak</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto py-4 flex justify-center">
+<button class="text-[10px] font-bold text-slate-400 hover:text-white flex items-center gap-1 transition-colors uppercase tracking-widest">
+                        View Global Leaderboard <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation for Mobile (BottomNavBar Anchor) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0b1326]/80 backdrop-blur-xl border-t border-outline-variant/10 px-6 py-3 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#c3c0ff]" href="#">
+<span class="material-symbols-outlined" data-icon="code" style="font-variation-settings: 'FILL' 1;">code</span>
+<span class="text-[10px] font-medium">Practice</span>
+</a>
+<div class="relative -top-6">
+<button class="w-12 h-12 bg-gradient-to-br from-primary-container to-secondary-container rounded-full flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-white" data-icon="bolt">bolt</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="text-[10px] font-medium">Aptitude</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

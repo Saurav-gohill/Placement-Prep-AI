@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance Analytics | PlacementAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#4f46e5",
+                    "surface-container": "#171f33",
+                    "primary": "#c3c0ff",
+                    "on-primary": "#1d00a5",
+                    "background": "#0b1326",
+                    "surface-container-highest": "#2d3449",
+                    "on-surface-variant": "#c7c4d8",
+                    "on-secondary-container": "#c4abff",
+                    "on-surface": "#dae2fd",
+                    "outline-variant": "#464555",
+                    "inverse-surface": "#dae2fd",
+                    "tertiary-fixed": "#c9e6ff",
+                    "on-tertiary-container": "#b8e0ff",
+                    "on-tertiary-fixed-variant": "#004c6e",
+                    "on-tertiary-fixed": "#001e2f",
+                    "outline": "#918fa1",
+                    "surface-tint": "#c3c0ff",
+                    "secondary": "#d0bcff",
+                    "surface-container-lowest": "#060e20",
+                    "on-error": "#690005",
+                    "primary-fixed": "#e2dfff",
+                    "on-secondary-fixed-variant": "#5516be",
+                    "secondary-fixed": "#e9ddff",
+                    "tertiary-fixed-dim": "#89ceff",
+                    "tertiary-container": "#006693",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#131b2e",
+                    "tertiary": "#89ceff",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-background": "#dae2fd",
+                    "surface": "#0b1326",
+                    "surface-variant": "#2d3449",
+                    "inverse-primary": "#4d44e3",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed": "#23005c",
+                    "surface-dim": "#0b1326",
+                    "surface-bright": "#31394d",
+                    "secondary-container": "#571bc1",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-secondary": "#3c0091",
+                    "on-primary-container": "#dad7ff",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed": "#0f0069",
+                    "on-tertiary": "#00344d",
+                    "inverse-on-surface": "#283044",
+                    "surface-container-high": "#222a3d",
+                    "secondary-fixed-dim": "#d0bcff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-edge {
+            box-shadow: inset 0 0 0 0.5px rgba(195, 192, 255, 0.1);
+        }
+        .glow-track {
+            box-shadow: 0 0 12px #89ceff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col py-4 border-r border-[#464555]/15 z-40 hidden md:flex">
+<div class="text-xl font-black text-white px-6 py-8 font-headline tracking-tighter">
+            PlacementAI
+        </div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Resume Analyzer
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings_voice">settings_voice</span>
+                Mock Interview
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+                Coding Practice
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                Aptitude
+            </a>
+<a class="border-l-2 border-[#4f46e5] text-[#c3c0ff] bg-gradient-to-r from-[#4f46e5]/10 to-transparent py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+                Analytics
+            </a>
+</nav>
+<div class="px-4 mb-6">
+<div class="bg-surface-container-high rounded-xl p-4 glass-edge">
+<p class="text-xs font-label font-bold text-on-surface-variant uppercase tracking-widest mb-2">Current Tier</p>
+<p class="text-sm font-headline font-bold text-white mb-3">Premium Member</p>
+<button class="w-full py-2 text-xs font-bold bg-gradient-to-r from-primary-container to-secondary-container rounded-full hover:opacity-90 transition-opacity">
+                    Upgrade to Pro
+                </button>
+</div>
+</div>
+<div class="mt-auto px-2 space-y-1">
+<a class="text-slate-400 py-2 px-4 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="text-slate-400 py-2 px-4 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen bg-background">
+<!-- Header Section -->
+<header class="px-8 pt-12 pb-8 flex justify-between items-end">
+<div>
+<h1 class="font-headline text-5xl font-bold tracking-tight text-on-surface mb-2">Performance <span class="text-primary">Analytics</span></h1>
+<p class="text-on-surface-variant font-body text-lg">AI-powered insights across your career preparation journey.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-full bg-surface-container-high font-headline text-sm font-bold text-on-surface glass-edge flex items-center gap-2 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="file_download">file_download</span>
+                    Export Report
+                </button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="text-sm font-headline font-bold text-white">Alex Chen</p>
+<p class="text-xs text-slate-400">Student Profile</p>
+</div>
+<img alt="Alex Chen Profile" class="w-12 h-12 rounded-full border-2 border-primary/20" data-alt="Close-up portrait of a young professional man with short dark hair, smiling subtly in a high-key studio setting with soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT29_jQPePfBF7XX5x9q4oyT4PD6c432aTHoZWH90dchcEDbss8buYrd_yFupHywEE9pE-ryDI8wXUC2SYuSFBq1B1thFUtIQ4DZV3e0zhaA2vdtfzqFSCMXhDGMMcrbu2YquYpsMWK0O-VDYR3LrsLpGfTmIOR1oR-QdsuBZcHruG1Zj-63I1vmBDJ88ozuqyoSSV4kEWuQel_gKaXB_spAvUE9Rdh5HQFLqTiJApS4rcwmkX0Y-GJAylf3U0oeHNBBobnl0MY-A"/>
+</div>
+</div>
+</header>
+<!-- Analytics Grid (Bento Style) -->
+<div class="px-8 pb-20 grid grid-cols-12 gap-6">
+<!-- Hero Metric: Coding Performance -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container-low rounded-xl p-8 glass-edge relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 blur-[100px] -mr-32 -mt-32"></div>
+<div class="flex justify-between items-start mb-12 relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary" data-icon="code">code</span>
+<span class="text-xs font-label font-bold text-primary uppercase tracking-widest">Mastery Level</span>
+</div>
+<h2 class="font-headline text-3xl font-semibold text-white">Coding Proficiency</h2>
+</div>
+<div class="text-right">
+<span class="text-5xl font-headline font-extrabold text-white">2,480</span>
+<p class="text-xs text-tertiary font-bold">+12% from last week</p>
+</div>
+</div>
+<!-- Visualization Area (Placeholder for Chart) -->
+<div class="h-64 flex items-end gap-2 mb-8 relative z-10">
+<!-- Custom Bar Chart Simulation -->
+<div class="flex-1 bg-surface-container-highest rounded-t-lg h-[40%] hover:h-[45%] transition-all duration-300 relative group">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-t-lg"></div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg h-[60%] hover:h-[65%] transition-all duration-300 relative group"></div>
+<div class="flex-1 bg-gradient-to-t from-primary-container to-secondary-container rounded-t-lg h-[85%] relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface-bright px-2 py-1 rounded text-[10px] font-bold text-white shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">TODAY</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg h-[55%] hover:h-[60%] transition-all duration-300 relative group"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg h-[70%] hover:h-[75%] transition-all duration-300 relative group"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg h-[45%] hover:h-[50%] transition-all duration-300 relative group"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg h-[90%] hover:h-[95%] transition-all duration-300 relative group"></div>
+</div>
+<div class="grid grid-cols-3 gap-6 relative z-10">
+<div class="p-4 rounded-lg bg-surface-container-high border-l-4 border-primary">
+<p class="text-xs text-slate-400 mb-1">Total Solved</p>
+<p class="text-xl font-headline font-bold text-white">412</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high border-l-4 border-secondary">
+<p class="text-xs text-slate-400 mb-1">Global Rank</p>
+<p class="text-xl font-headline font-bold text-white">#1,204</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high border-l-4 border-tertiary">
+<p class="text-xs text-slate-400 mb-1">Consistency</p>
+<p class="text-xl font-headline font-bold text-white">14 Days</p>
+</div>
+</div>
+</section>
+<!-- Interview Ratings Module -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container-low rounded-xl p-8 glass-edge">
+<h3 class="font-headline text-xl font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="settings_voice">settings_voice</span>
+                    Interview Readiness
+                </h3>
+<div class="flex justify-center mb-8">
+<!-- Circular Progress Simulation -->
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="12"></circle>
+<circle cx="80" cy="80" fill="transparent" r="70" stroke="url(#gradient)" stroke-dasharray="440" stroke-dashoffset="110" stroke-linecap="round" stroke-width="12"></circle>
+<defs>
+<lineargradient id="gradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#4f46e5"></stop>
+<stop offset="100%" stop-color="#571bc1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute text-center">
+<span class="text-4xl font-headline font-black text-white">75%</span>
+<p class="text-[10px] font-label font-bold text-slate-400 uppercase tracking-tighter">Avg. Score</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-on-surface-variant">Technical Depth</span>
+<span class="text-white font-bold">82%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 82%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-on-surface-variant">Communication</span>
+<span class="text-white font-bold">64%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 64%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-on-surface-variant">Problem Solving</span>
+<span class="text-white font-bold">78%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Aptitude Analysis -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container-low rounded-xl p-8 glass-edge">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline text-xl font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="psychology">psychology</span>
+                        Aptitude Scores
+                    </h3>
+<select class="bg-surface-container-high border-none rounded-lg text-xs font-bold py-1 pl-3 pr-8 focus:ring-1 focus:ring-primary">
+<option>Last 30 Days</option>
+<option>Last 6 Months</option>
+</select>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="text-lg font-headline font-black text-white">QA</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white mb-1">Quantitative Ability</p>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary glow-track rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<span class="text-sm font-headline font-bold text-tertiary">92/100</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="text-lg font-headline font-black text-white">LR</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white mb-1">Logical Reasoning</p>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<span class="text-sm font-headline font-bold text-primary">78/100</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="text-lg font-headline font-black text-white">VA</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white mb-1">Verbal Ability</p>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<span class="text-sm font-headline font-bold text-secondary">85/100</span>
+</div>
+</div>
+<div class="mt-8 p-4 bg-tertiary/5 rounded-lg border border-tertiary/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="auto_awesome">auto_awesome</span>
+<div>
+<p class="text-xs font-bold text-tertiary uppercase mb-1">AI Recommendation</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Your Quantitative Ability is in the top 1% of candidates. Focus more on Verbal Ability practice sessions to balance your profile for top-tier consulting roles.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Weak Topics Highlight -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container-low rounded-xl p-8 glass-edge">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline text-xl font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-error" data-icon="priority_high">priority_high</span>
+                        Topics to Strengthen
+                    </h3>
+<a class="text-xs font-bold text-primary hover:underline uppercase tracking-widest" href="#">View All Study Plan</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container-high p-4 rounded-xl hover:scale-[1.02] transition-transform cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<span class="px-2 py-1 bg-error/10 text-error text-[10px] font-bold rounded uppercase">High Priority</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-white transition-colors" data-icon="open_in_new">open_in_new</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-white mb-1">Dynamic Programming</h4>
+<p class="text-xs text-slate-400 mb-4">Mastering complex sub-problems and memoization techniques.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Last attempt: 42%</span>
+<span class="text-xs font-bold text-white">4 Modules Left</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl hover:scale-[1.02] transition-transform cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<span class="px-2 py-1 bg-amber-500/10 text-amber-500 text-[10px] font-bold rounded uppercase">Medium Priority</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-white transition-colors" data-icon="open_in_new">open_in_new</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-white mb-1">System Design</h4>
+<p class="text-xs text-slate-400 mb-4">Scalability patterns, load balancing, and database sharding basics.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Last attempt: 58%</span>
+<span class="text-xs font-bold text-white">2 Modules Left</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl hover:scale-[1.02] transition-transform cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<span class="px-2 py-1 bg-error/10 text-error text-[10px] font-bold rounded uppercase">High Priority</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-white transition-colors" data-icon="open_in_new">open_in_new</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-white mb-1">Greedy Algorithms</h4>
+<p class="text-xs text-slate-400 mb-4">Optimizing local choices for global optimum solutions.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Last attempt: 31%</span>
+<span class="text-xs font-bold text-white">6 Modules Left</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl hover:scale-[1.02] transition-transform cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<span class="px-2 py-1 bg-amber-500/10 text-amber-500 text-[10px] font-bold rounded uppercase">Medium Priority</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-white transition-colors" data-icon="open_in_new">open_in_new</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-white mb-1">Operating Systems</h4>
+<p class="text-xs text-slate-400 mb-4">Memory management, process scheduling, and deadlocks.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Last attempt: 62%</span>
+<span class="text-xs font-bold text-white">1 Module Left</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-[#464555]/15 bg-[#0b1326] flex flex-col items-center gap-4 px-8">
+<p class="font-inter text-xs text-slate-500 text-center">© 2024 PlacementAI. Precision Engineered for Careers.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-slate-300 transition-colors font-inter text-xs" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-slate-300 transition-colors font-inter text-xs" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-slate-300 transition-colors font-inter text-xs" href="#">Cookie Policy</a>
+</div>
+</footer>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-[#0b1326]/60 backdrop-blur-xl flex md:hidden items-center justify-around px-4 z-50">
+<button class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+</button>
+<button class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+</button>
+<button class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" data-icon="leaderboard" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+</button>
+<button class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</nav>
+</body></html>

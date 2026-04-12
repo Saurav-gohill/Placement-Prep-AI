@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resume Analyzer | PlacementAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#4f46e5",
+                        "surface-container": "#171f33",
+                        "primary": "#c3c0ff",
+                        "on-primary": "#1d00a5",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-surface-variant": "#c7c4d8",
+                        "on-secondary-container": "#c4abff",
+                        "on-surface": "#dae2fd",
+                        "outline-variant": "#464555",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-tertiary-container": "#b8e0ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "on-tertiary-fixed": "#001e2f",
+                        "outline": "#918fa1",
+                        "surface-tint": "#c3c0ff",
+                        "secondary": "#d0bcff",
+                        "surface-container-lowest": "#060e20",
+                        "on-error": "#690005",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "secondary-fixed": "#e9ddff",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "tertiary-container": "#006693",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#131b2e",
+                        "tertiary": "#89ceff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-background": "#dae2fd",
+                        "surface": "#0b1326",
+                        "surface-variant": "#2d3449",
+                        "inverse-primary": "#4d44e3",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-dim": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "secondary-container": "#571bc1",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary": "#3c0091",
+                        "on-primary-container": "#dad7ff",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#0f0069",
+                        "on-tertiary": "#00344d",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-high": "#222a3d",
+                        "secondary-fixed-dim": "#d0bcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-edge {
+            box-shadow: inset 0 0 0 0.5px rgba(195, 192, 255, 0.1);
+        }
+        .insight-hover:hover {
+            transform: scale(1.02);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .glow-track {
+            box-shadow: 0 0 12px #89ceff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-white">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col py-4 border-r border-[#464555]/15 z-40 hidden md:flex">
+<div class="text-xl font-black text-white px-6 py-8 font-headline">PlacementAI</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="border-l-2 border-[#4f46e5] text-[#c3c0ff] bg-gradient-to-r from-[#4f46e5]/10 to-transparent py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium translate-x-1 transition-transform duration-200 rounded-r-xl" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Resume Analyzer
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings_voice">settings_voice</span>
+                Mock Interview
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+                Coding Practice
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                Aptitude
+            </a>
+<a class="text-slate-400 py-3 px-6 flex items-center gap-3 font-manrope text-sm font-medium hover:text-white hover:bg-[#222a3d] transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+                Analytics
+            </a>
+</nav>
+<div class="mt-auto px-6 py-4">
+<div class="bg-surface-container-high rounded-xl p-4 glass-edge">
+<p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Pro Access</p>
+<button class="w-full py-2 bg-gradient-to-r from-primary-container to-secondary-container text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity">
+                    Upgrade to Pro
+                </button>
+</div>
+<div class="mt-6 flex flex-col gap-2">
+<a class="text-slate-400 flex items-center gap-3 text-xs hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="text-slate-400 flex items-center gap-3 text-xs hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+                    Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen p-8 lg:p-12">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div>
+<h1 class="font-headline text-5xl md:text-6xl font-bold tracking-tight text-on-surface">Resume <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-tertiary">Analyzer</span></h1>
+<p class="text-on-surface-variant mt-4 max-w-xl font-body text-lg">Optimizing your profile for ATS algorithms using predictive AI insights and precision career mapping.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="font-headline font-bold text-white text-lg leading-tight">Alex Chen</p>
+<p class="text-primary text-xs font-label">Premium Member</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="Student Profile" class="w-full h-full object-cover" data-alt="portrait of a professional young man in his late 20s with a friendly smile, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwXcJ5g3-WuwJsf3xpzBsjmVvl5P6SlrIBCmkcdNXd3D0PsXvKmsTXPnsKC7LiILXAsFl2NqoHsW0CxLqiHV1f_MqNdzxZ87RKA2aF2RliHN79RGBzzfXnDdSuqEvGRNKSU-8TXaYWIP7u16ZHVqc4Dz5kfvlTwz35noEXe2YO1-EDZH3W23oQplE1Vw8bCTcNn7t8ZpCqwJo5gzIkTKqXYI1cljpdYcQBJFjb0wjWxfs_eyeS6GlhkwGUgO2oK16c1r4w2aSi8xI"/>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Upload Section (Large) -->
+<section class="lg:col-span-7 bg-surface-container-low rounded-xl p-8 glass-edge">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline text-xl font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="cloud_upload">cloud_upload</span>
+                        Upload Document
+                    </h2>
+<span class="text-xs font-label text-on-surface-variant bg-surface-container-highest px-3 py-1 rounded-full uppercase tracking-widest">PDF, DOCX Max 5MB</span>
+</div>
+<div class="relative group border-2 border-dashed border-outline-variant/30 hover:border-primary/50 rounded-xl p-12 flex flex-col items-center justify-center transition-all bg-surface-container-lowest/50 min-h-[300px]">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="upload_file">upload_file</span>
+</div>
+<p class="font-headline text-lg text-on-surface font-medium text-center">Drag and drop your resume here</p>
+<p class="text-on-surface-variant text-sm mt-2 text-center">Our AI will parse your experience instantly</p>
+<button class="mt-8 px-8 py-3 bg-surface-bright text-on-surface font-semibold rounded-xl hover:bg-primary-container hover:text-white transition-all shadow-xl">
+                        Select File
+                    </button>
+<!-- Decorative background element -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<!-- Recent Scans -->
+<div class="mt-10">
+<p class="text-xs font-label text-on-surface-variant uppercase tracking-widest mb-4">Recently Analyzed</p>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-4 bg-surface-container-highest/30 rounded-lg insight-hover">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div>
+<p class="text-sm font-medium">Software_Engineer_v3.pdf</p>
+<p class="text-[10px] text-on-surface-variant">Analyzed 2 hours ago</p>
+</div>
+</div>
+<span class="text-primary font-headline font-bold">84%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Score Gauge Section -->
+<section class="lg:col-span-5 flex flex-col gap-8">
+<!-- Score Meter -->
+<div class="bg-surface-container-high rounded-xl p-8 glass-edge relative overflow-hidden">
+<h2 class="font-headline text-xl font-semibold mb-8">ATS Match Score</h2>
+<div class="flex flex-col items-center justify-center py-6">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- Circular SVG Gauge -->
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle cx="96" cy="96" fill="transparent" r="88" stroke="url(#gradient)" stroke-dasharray="552.9" stroke-dashoffset="138" stroke-linecap="round" stroke-width="12"></circle>
+<defs>
+<lineargradient id="gradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#4f46e5"></stop>
+<stop offset="100%" stop-color="#571bc1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-5xl font-headline font-black text-white">75</span>
+<span class="text-xs font-label text-on-surface-variant uppercase">Potential</span>
+</div>
+</div>
+<div class="mt-8 flex gap-8">
+<div class="text-center">
+<p class="text-[10px] font-label text-on-surface-variant uppercase mb-1">Keywords</p>
+<p class="font-headline font-bold text-lg text-primary">18/24</p>
+</div>
+<div class="w-[1px] h-10 bg-outline-variant/30"></div>
+<div class="text-center">
+<p class="text-[10px] font-label text-on-surface-variant uppercase mb-1">Impact</p>
+<p class="font-headline font-bold text-lg text-tertiary">Strong</p>
+</div>
+</div>
+</div>
+<!-- Glow Decoration -->
+<div class="absolute -bottom-12 -right-12 w-32 h-32 bg-primary/20 rounded-full blur-[60px]"></div>
+</div>
+<!-- Benchmarking -->
+<div class="bg-surface-container-low rounded-xl p-8 glass-edge">
+<h3 class="font-headline text-sm font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="equalizer">equalizer</span>
+                        Industry Benchmarking
+                    </h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-on-surface-variant">Technical Skills</span>
+<span class="text-white">92%</span>
+</div>
+<div class="h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[92%] bg-tertiary glow-track rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-on-surface-variant">Quantifiable Results</span>
+<span class="text-white">64%</span>
+</div>
+<div class="h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[64%] bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Feedback Panel (Full Width) -->
+<section class="lg:col-span-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-2xl font-bold">AI Precision Feedback</h2>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest">3 Critical</span>
+<span class="px-3 py-1 rounded-full bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase tracking-widest">5 Optimization</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Suggestion Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-6 glass-edge insight-hover border-l-4 border-error">
+<div class="w-10 h-10 bg-error-container/20 rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-error" data-icon="error">error</span>
+</div>
+<h4 class="font-headline font-semibold text-white mb-2">Missing Power Verbs</h4>
+<p class="text-sm text-on-surface-variant font-body">Your experience section uses passive language. Replace "Responsible for" with "Orchestrated" or "Executed" to increase impact by 40%.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[10px] font-label text-primary uppercase">High Priority</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Suggestion Card 2 -->
+<div class="bg-surface-container-low rounded-xl p-6 glass-edge insight-hover border-l-4 border-tertiary">
+<div class="w-10 h-10 bg-tertiary-container/20 rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h4 class="font-headline font-semibold text-white mb-2">Quantify Outcomes</h4>
+<p class="text-sm text-on-surface-variant font-body">Add specific metrics to your "Project Lead" role. Mention team size, budget, or percentage growth achieved.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[10px] font-label text-primary uppercase">Content Boost</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Suggestion Card 3 -->
+<div class="bg-surface-container-low rounded-xl p-6 glass-edge insight-hover border-l-4 border-primary">
+<div class="w-10 h-10 bg-primary-container/20 rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="data_object">data_object</span>
+</div>
+<h4 class="font-headline font-semibold text-white mb-2">Keyword Density</h4>
+<p class="text-sm text-on-surface-variant font-body">Your resume is missing 'Scalable Infrastructure' and 'Agile Methodologies' which are top-ranked for this role.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[10px] font-label text-primary uppercase">ATS Compliance</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Shell -->
+<footer class="mt-20 flex flex-col items-center gap-4 w-full px-8 py-12 border-t border-[#464555]/15 font-inter text-xs text-slate-500">
+<div class="flex gap-8 mb-4">
+<a class="text-slate-500 hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-slate-300 transition-colors" href="#">Cookie Policy</a>
+</div>
+<p>© 2024 PlacementAI. Precision Engineered for Careers.</p>
+</footer>
+</main>
+<!-- Floating Action Button - Only on relevant screens -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-primary-container to-secondary-container rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-transform active:scale-95 z-50">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+</body></html>

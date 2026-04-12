@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luminous Prep | AI-Powered Placement Success</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#862dd4",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#2c0051",
+                    "on-secondary-container": "#fffbff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#c0c1ff",
+                    "secondary": "#4648d4",
+                    "primary": "#3525cd",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#f0dbff",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "secondary-fixed": "#e1e0ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-surface": "#191c1e",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "background": "#f7f9fb",
+                    "tertiary-fixed-dim": "#ddb7ff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-primary-container": "#dad7ff",
+                    "surface-container": "#eceef0",
+                    "outline": "#777587",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface": "#f7f9fb",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#4f46e5",
+                    "surface-dim": "#d8dadc",
+                    "tertiary": "#6b00b7",
+                    "on-tertiary-container": "#ebd2ff",
+                    "outline-variant": "#c7c4d8",
+                    "secondary-container": "#6063ee",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed": "#e2dfff",
+                    "on-secondary-fixed": "#07006c",
+                    "on-primary-fixed": "#0f0069",
+                    "on-background": "#191c1e",
+                    "surface-tint": "#4d44e3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#2f2ebe",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-tertiary-fixed-variant": "#6900b3",
+                    "on-surface-variant": "#464555"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .luminous-glow {
+            box-shadow: 0 12px 32px -4px rgba(73, 70, 229, 0.08);
+        }
+        .tonal-transition-surface {
+            background: linear-gradient(to bottom, rgba(247, 249, 251, 0) 0%, rgba(247, 249, 251, 1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_32px_-4px_rgba(73,70,229,0.06)]">
+<nav class="flex justify-between items-center w-full px-8 h-20 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-indigo-700">Luminous Prep</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-indigo-700 font-bold border-b-2 border-indigo-600 pb-1 font-manrope text-sm tracking-tight" href="#">Programs</a>
+<a class="text-slate-500 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200" href="#">Mentors</a>
+<a class="text-slate-500 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200" href="#">Pricing</a>
+<a class="text-slate-500 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 text-indigo-600 font-semibold text-sm hover:opacity-80 transition-opacity">Login</button>
+<button class="px-6 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-bold text-sm shadow-lg scale-98 active:scale-95 transition-transform">Get Started</button>
+</div>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative px-8 pt-24 pb-32 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-xs font-bold tracking-wider mb-6">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                    AI-DRIVEN CAREER ACCELERATION
+                </div>
+<h1 class="text-6xl md:text-7xl font-extrabold text-on-surface tracking-tighter leading-[0.95] mb-8">
+                    Master the <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">Future</span> of Interviews.
+                </h1>
+<p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed mb-10">
+                    The only platform that treats your preparation with the prestige it deserves. Elevate your engineering skills with AI-powered simulations designed by top-tier mentors.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-bold text-lg luminous-glow transition-all hover:scale-[1.02] active:scale-[0.98]">
+                        Start Practice Now
+                    </button>
+<button class="px-8 py-4 bg-surface-container-lowest text-on-surface font-bold text-lg border border-outline-variant/15 rounded-lg transition-all hover:bg-surface-bright">
+                        View Curriculum
+                    </button>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="relative w-full aspect-square rounded-3xl overflow-hidden luminous-glow">
+<img alt="Collaborative learning environment" class="w-full h-full object-cover" data-alt="Modern high-tech workspace with diverse students collaborating around digital screens with soft blue and purple lighting atmospheric glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN8jb4HgFVUFmSnI3Eg9L4tdgaRKER5nb-YkmBoI1p8UV85sEz8EHwDhyVhidnZHa1TYN9J7EmOROhYAUNDv8JWaYhAohLNtupHluNZCsLn-fO7NQJvTcJ8a4aeOxVYmvdcHc8OqNL1rC8trgKN0cmNA4NAfiqeGIqW9keuC-T98g-TGmIZj0ze0_DPvKP1uaIAKwXBOJVvjs7Q8Pf25B6wRZEMqrYGc2kW-9NtEk1UH8uYUJqh7L6cPwRfBlzp5y5vEnB1-krneQ"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+</div>
+<!-- Asymmetric Glass Floating Element -->
+<div class="absolute -bottom-6 -left-12 p-6 glass-panel rounded-2xl luminous-glow border border-white/40 max-w-[240px]">
+<div class="flex items-center gap-3 mb-2">
+<span class="p-2 rounded-lg bg-tertiary/10 text-tertiary">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</span>
+<span class="text-xs font-bold text-on-surface-variant">Live Feedback</span>
+</div>
+<div class="text-sm font-semibold text-on-surface">"Communication clarity improved by 15% in your last mock."</div>
+</div>
+</div>
+</section>
+<!-- Feature Bento Grid -->
+<section class="px-8 py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+<div class="max-w-2xl">
+<h2 class="text-4xl font-extrabold text-on-surface tracking-tight mb-4">Precision-Engineered Preparation</h2>
+<p class="text-on-surface-variant text-lg">Every module is built to simulate real-world high-stakes scenarios.</p>
+</div>
+<button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                        Explore all features <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Resume Analyzer -->
+<div class="md:col-span-7 bg-surface-container-lowest p-8 rounded-2xl group hover:bg-surface-bright transition-all duration-300">
+<div class="mb-12 flex justify-between items-start">
+<div class="p-4 bg-primary/5 text-primary rounded-xl">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<span class="text-[10px] font-black uppercase tracking-widest text-outline">Module 01</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3">Resume Analyzer</h3>
+<p class="text-on-surface-variant mb-8 max-w-sm">Scan your profile against JD requirements with our neural parsing engine to ensure 90%+ ATS score.</p>
+<div class="h-48 w-full bg-surface-container-high/50 rounded-xl overflow-hidden relative border border-outline-variant/10">
+<div class="absolute inset-x-8 top-8 space-y-3">
+<div class="h-2 w-3/4 bg-primary/20 rounded-full"></div>
+<div class="h-2 w-1/2 bg-primary/20 rounded-full"></div>
+<div class="h-2 w-5/6 bg-primary/40 rounded-full"></div>
+<div class="h-2 w-1/3 bg-primary/20 rounded-full"></div>
+</div>
+<div class="absolute bottom-4 right-6 bg-white p-3 rounded-lg shadow-sm border border-primary/10">
+<span class="text-xs font-bold text-primary">Matching... 92%</span>
+</div>
+</div>
+</div>
+<!-- Mock Interview -->
+<div class="md:col-span-5 bg-gradient-to-br from-primary to-primary-container p-8 rounded-2xl text-white flex flex-col justify-between">
+<div>
+<div class="mb-12 p-4 bg-white/10 w-fit rounded-xl">
+<span class="material-symbols-outlined text-3xl">mic_external_on</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Mock Interviews</h3>
+<p class="opacity-80">Practice with industry-specific AI avatars that adapt their follow-up questions based on your responses.</p>
+</div>
+<div class="mt-12 flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-slate-200"></div>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-slate-300"></div>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-slate-400"></div>
+</div>
+<span class="text-xs font-medium opacity-80">Join 4k+ candidates today</span>
+</div>
+</div>
+<!-- Coding -->
+<div class="md:col-span-4 bg-surface-container-lowest p-8 rounded-2xl border border-transparent hover:border-primary/10 transition-all">
+<div class="mb-8 p-3 bg-tertiary/5 text-tertiary w-fit rounded-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">code</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Coding Environment</h3>
+<p class="text-sm text-on-surface-variant">Real-time code evaluation with complexity analysis and hint generation.</p>
+</div>
+<!-- Aptitude -->
+<div class="md:col-span-4 bg-surface-container-lowest p-8 rounded-2xl border border-transparent hover:border-primary/10 transition-all">
+<div class="mb-8 p-3 bg-secondary/5 text-secondary w-fit rounded-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">quiz</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Aptitude &amp; Logic</h3>
+<p class="text-sm text-on-surface-variant">Curated problem sets covering quantitative, logical, and verbal reasoning.</p>
+</div>
+<!-- Analytics -->
+<div class="md:col-span-4 bg-surface-container-lowest p-8 rounded-2xl border border-transparent hover:border-primary/10 transition-all">
+<div class="mb-8 p-3 bg-primary/5 text-primary w-fit rounded-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Advanced Analytics</h3>
+<p class="text-sm text-on-surface-variant">Visualize your growth with skill heatmaps and percentile rankings.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-8 py-24">
+<div class="max-w-5xl mx-auto glass-panel rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden luminous-glow border border-white">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-tertiary/5 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<h2 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-6">Ready to secure your <br/>dream role?</h2>
+<p class="text-on-surface-variant text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+                    Join the elite 1% of candidates using AI to bridge the gap between education and career reality.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-10 py-4 bg-primary text-white rounded-lg font-bold shadow-lg hover:shadow-primary/20 transition-all">Get Started for Free</button>
+<button class="px-10 py-4 border border-outline-variant/30 text-on-surface font-bold rounded-lg hover:bg-surface-bright transition-all">Talk to a Mentor</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-100 bg-white">
+<div class="flex flex-col md:flex-row justify-between items-center py-12 px-8 max-w-7xl mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-xl font-bold text-slate-900">Luminous Prep</span>
+<p class="font-manrope text-xs text-slate-400">© 2024 Luminous Clarity. Empowering the next generation of talent.</p>
+</div>
+<div class="flex gap-8 items-center">
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Terms of Service</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Cookie Policy</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity" href="#">Contact Us</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">brand_awareness</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">alternate_email</span>
+</div>
+</div>
+</footer>
+</body></html>

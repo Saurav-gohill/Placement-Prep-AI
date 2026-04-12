@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#862dd4",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#2c0051",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "secondary": "#4648d4",
+                        "primary": "#3525cd",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#f0dbff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface": "#191c1e",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "inverse-primary": "#c3c0ff",
+                        "on-primary-container": "#dad7ff",
+                        "surface-container": "#eceef0",
+                        "outline": "#777587",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#4f46e5",
+                        "surface-dim": "#d8dadc",
+                        "tertiary": "#6b00b7",
+                        "on-tertiary-container": "#ebd2ff",
+                        "outline-variant": "#c7c4d8",
+                        "secondary-container": "#6063ee",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary-fixed": "#07006c",
+                        "on-primary-fixed": "#0f0069",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#4d44e3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "on-surface-variant": "#464555"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition-surface {
+            background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,249,251,0) 100%);
+        }
+        .luminous-glow:focus-within {
+            box-shadow: 0 0 0 2px rgba(53, 37, 205, 0.2);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_32px_-4px_rgba(73,70,229,0.06)]">
+<nav class="flex justify-between items-center w-full px-8 h-20 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-indigo-700 dark:text-indigo-300">Luminous Prep</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200" href="#">Programs</a>
+<a class="text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200" href="#">Mentors</a>
+<a class="text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200" href="#">Pricing</a>
+<a class="text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium tracking-tight hover:text-indigo-600 transition-colors duration-200 scale-98 active:scale-95 transition-transform">Login</button>
+<button class="bg-primary-container text-white px-5 py-2 rounded-lg font-manrope text-sm font-medium tracking-tight scale-98 active:scale-95 transition-transform shadow-lg shadow-primary/20">Get Started</button>
+</div>
+</nav>
+</header>
+<main class="flex-grow pt-28 pb-12 px-6 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Quiz Interface -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Progress Section -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_12px_32px_-4px_rgba(73,70,229,0.04)]">
+<div class="flex justify-between items-end mb-4">
+<div>
+<span class="text-primary font-bold text-sm tracking-widest uppercase">Quantitative Reasoning</span>
+<h1 class="text-2xl font-extrabold text-on-surface tracking-tight mt-1">Section 2: Arithmetic Progression</h1>
+</div>
+<div class="text-right">
+<span class="text-on-surface-variant text-sm font-semibold">Question 14 of 30</span>
+</div>
+</div>
+<!-- Luminous Track Progress Bar -->
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-primary" style="width: 46%;"></div>
+</div>
+</div>
+<!-- Question Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_32px_-4px_rgba(73,70,229,0.04)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="relative">
+<div class="flex items-start gap-4 mb-8">
+<span class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-container text-white flex items-center justify-center font-bold">14</span>
+<p class="text-lg font-medium text-on-surface leading-relaxed">
+                            The sum of the first 15 terms of an arithmetic progression is 600, and the common difference is 4. What is the value of the first term (a)?
+                        </p>
+</div>
+<!-- MCQ Options -->
+<div class="space-y-4">
+<label class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-surface-bright transition-all cursor-pointer luminous-glow border border-transparent hover:border-primary/10">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20 bg-white" name="aptitude-q" type="radio"/>
+<span class="ml-4 text-on-surface-variant group-hover:text-on-surface font-medium">A. 12</span>
+</label>
+<label class="group flex items-center p-4 rounded-lg bg-white shadow-sm ring-2 ring-primary transition-all cursor-pointer">
+<input checked="" class="w-5 h-5 text-primary border-primary focus:ring-primary/20 bg-white" name="aptitude-q" type="radio"/>
+<span class="ml-4 text-on-surface font-bold">B. 15</span>
+<span class="ml-auto material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+<label class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-surface-bright transition-all cursor-pointer luminous-glow border border-transparent hover:border-primary/10">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20 bg-white" name="aptitude-q" type="radio"/>
+<span class="ml-4 text-on-surface-variant group-hover:text-on-surface font-medium">C. 18</span>
+</label>
+<label class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-surface-bright transition-all cursor-pointer luminous-glow border border-transparent hover:border-primary/10">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary/20 bg-white" name="aptitude-q" type="radio"/>
+<span class="ml-4 text-on-surface-variant group-hover:text-on-surface font-medium">D. 20</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Action Navigation -->
+<div class="flex justify-between items-center bg-white/50 p-4 rounded-xl backdrop-blur-sm">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-primary hover:bg-primary/5 transition-all scale-98 active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                    Previous
+                </button>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-on-surface-variant hover:bg-surface-container transition-all scale-98 active:scale-95 border border-outline-variant/20">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+                        Mark for Review
+                    </button>
+<button class="flex items-center gap-2 px-8 py-3 rounded-lg font-bold text-white bg-gradient-to-br from-primary to-primary-container shadow-lg shadow-primary/25 scale-98 active:scale-95 transition-all">
+                        Save &amp; Next
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Bento -->
+<aside class="lg:col-span-4 flex flex-col gap-6">
+<!-- Timer Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_12px_32px_-4px_rgba(73,70,229,0.04)] text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-2 block">Time Remaining</span>
+<div class="text-4xl font-black text-on-surface tabular-nums tracking-tighter">
+                        24:18
+                    </div>
+<div class="mt-4 flex justify-center gap-1">
+<div class="w-1 h-1 rounded-full bg-error animate-pulse"></div>
+<div class="w-1 h-1 rounded-full bg-error animate-pulse delay-75"></div>
+<div class="w-1 h-1 rounded-full bg-error animate-pulse delay-150"></div>
+</div>
+</div>
+</div>
+<!-- Question Navigator Grid -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_12px_32px_-4px_rgba(73,70,229,0.04)]">
+<h3 class="text-sm font-bold text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="grid_view">grid_view</span>
+                    Question Palette
+                </h3>
+<div class="grid grid-cols-5 gap-3">
+<!-- Iterative generation of question dots -->
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">1</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">2</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">3</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-surface-container-high text-on-surface-variant cursor-pointer">4</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">5</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-surface-container-high text-on-surface-variant cursor-pointer">6</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">7</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-error text-white cursor-pointer" title="Flagged">8</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">9</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">10</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">11</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">12</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-tertiary-container text-white cursor-pointer">13</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold ring-2 ring-primary bg-white text-primary cursor-pointer shadow-sm">14</div>
+<div class="aspect-square rounded-lg flex items-center justify-center text-xs font-bold bg-surface-container-highest text-on-surface-variant cursor-not-allowed">15</div>
+</div>
+<!-- Legend -->
+<div class="mt-6 space-y-2 border-t border-surface-container pt-4">
+<div class="flex items-center gap-3 text-xs font-semibold text-on-surface-variant">
+<div class="w-3 h-3 rounded bg-tertiary-container"></div> Answered
+                    </div>
+<div class="flex items-center gap-3 text-xs font-semibold text-on-surface-variant">
+<div class="w-3 h-3 rounded bg-surface-container-high"></div> Not Answered
+                    </div>
+<div class="flex items-center gap-3 text-xs font-semibold text-on-surface-variant">
+<div class="w-3 h-3 rounded bg-error"></div> Marked
+                    </div>
+</div>
+</div>
+<!-- Pro Tip / Mentor Card -->
+<div class="bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-xl p-6 text-white shadow-xl shadow-indigo-200">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-indigo-200" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<span class="text-xs font-bold uppercase tracking-widest text-indigo-100">Mentor Tip</span>
+</div>
+<p class="text-sm font-medium leading-relaxed opacity-90 italic">
+                    "For AP problems, always write down the given variables (n, d, S_n) first. It helps visualize the formula choice."
+                </p>
+<div class="mt-4 flex items-center gap-3">
+<img alt="Mentor" class="w-8 h-8 rounded-full border-2 border-white/20" data-alt="portrait of a professional male mentor with glasses smiling kindly in a brightly lit modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASGNarHH1qKDX827CZEi1f4NKpSoiqeJZT5avY3bdN7bIp6ge_d7iktZuKOuIV2gl8e5sYANdnOn1M1nw2lNLwcKfJypAcy1-N6M8Q70bjN0_C1DNTT5B-VhP1eoG-XmgMrCdCMN2PTt5x8IHucPUJEcPZbsxqa0EhVvurey4dR2-yRiqXLgkBGiMtz4a6usU_OrQ8Oj1x0zdUOiBq7tLfdY2EKmsCpdZ2QxCMDrTg8aox8m_x5eDXM30dz1ajAbqGpJY4qqgVK_U"/>
+<span class="text-xs font-bold">David Chen, IIT Alumnus</span>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-100 dark:border-slate-800 bg-white mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center py-12 px-8 max-w-7xl mx-auto">
+<div class="mb-4 md:mb-0">
+<p class="font-manrope text-xs text-slate-400">© 2024 Luminous Clarity. Empowering the next generation of talent.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity opacity-80 hover:opacity-100" href="#">Cookie Policy</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-indigo-600 transition-opacity opacity-80 hover:opacity-100" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<!-- FAB for Support (Contextual) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-[0_12px_32px_-4px_rgba(73,70,229,0.3)] scale-98 hover:scale-105 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined" data-icon="live_help">live_help</span>
+<span class="absolute right-full mr-4 bg-on-surface text-white text-xs py-2 px-4 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Get Instant Help</span>
+</button>
+</body></html>
