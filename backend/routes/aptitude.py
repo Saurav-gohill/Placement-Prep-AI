@@ -11,7 +11,17 @@ async def get_aptitude_questions():
     try:
         db: Client = get_db()
         resp = db.table("aptitude_questions").select("*").limit(10).execute()
-        return {"questions": resp.data}
+        
+        formatted_questions = []
+        for q in resp.data:
+            formatted_questions.append({
+                "id": q["question_id"],
+                "question_text": q["question"],
+                "topic": q["topic"],
+                "options": [q["option_a"], q["option_b"], q["option_c"], q["option_d"]]
+            })
+            
+        return {"questions": formatted_questions}
     except Exception as e:
          raise HTTPException(status_code=500, detail=str(e))
 
@@ -31,10 +41,9 @@ async def submit_aptitude(
         resp = db.table("aptitude_results").insert({
             "user_id": user_id,
             "score": score,
-            "total_questions": total_q,
-            "time_taken_seconds": 600
+            "total_questions": total_q
         }).execute()
 
-        return {"score": score, "total": total_q, "result_id": resp.data[0]['id']}
+        return {"score": score, "total": total_q, "result_id": resp.data[0]['result_id']}
     except Exception as e:
          raise HTTPException(status_code=500, detail=str(e))

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SideNavBar from '../components/layout/SideNavBar';
 import { useAuth } from '../context/AuthContext';
 import { fetchApi } from '../lib/api';
+import { FloatingShapes, GlowOrbs } from '../components/animations/Animations3D';
 
 export default function AnalyticsPage() {
   const { user } = useAuth();
@@ -27,9 +28,11 @@ export default function AnalyticsPage() {
     <div className="flex bg-background min-h-screen text-on-surface">
       <SideNavBar />
 
-      <main className="md:ml-64 flex-1 flex flex-col min-h-screen overflow-y-auto no-scrollbar">
+      <main className="md:ml-64 flex-1 flex flex-col min-h-screen overflow-y-auto no-scrollbar relative">
+        <FloatingShapes variant="ambient" />
+        <GlowOrbs count={2} />
         {/* Header Section */}
-        <header className="px-6 md:px-8 pt-12 pb-8 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+        <header className="px-6 md:px-8 pt-12 pb-8 flex flex-col md:flex-row md:justify-between md:items-end gap-6 relative z-10 anim-fade-in-up anim-delay-1">
             <div>
                 <h1 className="font-headline text-5xl font-bold tracking-tight text-on-surface mb-2">Performance <span className="text-primary">Analytics</span></h1>
                 <p className="text-on-surface-variant font-body text-lg">AI-powered insights across your career preparation journey.</p>

@@ -71,9 +71,8 @@ async def submit_code(
             "user_id": user_id,
             "question_id": req.question_id, # Requires real uuid in production schema
             "code": req.code,
-            "language": req.language,
-            "passed": passed,
-            "execution_time_ms": execution_time
+            "result": "Passed" if passed else "Failed",
+            "score": 100 if passed else 0
         }).execute()
     except Exception as e:
         print(f"Failed to record sumbission in DB: {e}")

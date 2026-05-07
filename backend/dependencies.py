@@ -1,41 +1,50 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from database import get_db
-import jwt
+import requests
 import os
 
 security = HTTPBearer()
 
 def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     """
-    Validates the Supabase JWT.
-    Extracts the user sub (UUID) and returns it for backend routing logic.
+    Validates the Supabase JWT by calling Supabase's own auth endpoint.
+    This avoids needing the JWT secret locally - Supabase verifies for us.
     """
     token = credentials.credentials
-    jwt_secret = os.environ.get("SUPABASE_JWT_SECRET", "placeholder_jwt_secret")
+    supabase_url = os.environ.get("SUPABASE_URL", "")
+    supabase_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
     
     try:
-        # Supabase uses HS256 algorithm by default
-        payload = jwt.decode(
-            token, 
-            jwt_secret, 
-            algorithms=["HS256"],
-            options={"verify_aud": False} # Default audience is 'authenticated' but varies by setup
+        # Use Supabase Auth API to verify the token and get user info
+        resp = requests.get(
+            f"{supabase_url}/auth/v1/user",
+            headers={
+                "Authorization": f"Bearer {token}",
+                "apikey": supabase_key
+            },
+            timeout=10
         )
-        user_id: str = payload.get("sub")
-        if user_id is None:
+        
+        if resp.status_code != 200:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid authentication credentials format",
+                detail=f"Invalid or expired token (status {resp.status_code})"
             )
+        
+        user_data = resp.json()
+        user_id = user_data.get("id")
+        
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Could not extract user ID from token"
+            )
+        
         return user_id
-    except jwt.ExpiredSignatureError:
+        
+    except requests.exceptions.RequestException as e:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token has expired",
-        )
-    except jwt.InvalidTokenError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid token",
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"Could not reach auth service: {str(e)}"
         )

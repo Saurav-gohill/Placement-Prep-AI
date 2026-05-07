@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SideNavBar from '../components/layout/SideNavBar';
 import { useAuth } from '../context/AuthContext';
 import { fetchApi } from '../lib/api';
+import { FloatingShapes, GlowOrbs } from '../components/animations/Animations3D';
 
 export default function ResumeAnalyzerPage() {
   const { user } = useAuth();
@@ -43,9 +44,11 @@ export default function ResumeAnalyzerPage() {
     <div className="flex bg-surface min-h-screen text-on-surface">
       <SideNavBar />
       
-      <main className="md:ml-64 flex-1 flex flex-col min-h-screen p-8 lg:p-12 overflow-y-auto no-scrollbar">
+      <main className="md:ml-64 flex-1 flex flex-col min-h-screen p-8 lg:p-12 overflow-y-auto no-scrollbar relative">
+        <FloatingShapes variant="ambient" />
+        <GlowOrbs count={2} />
         {/* Header Section */}
-        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 relative z-10 anim-fade-in-up anim-delay-1">
             <div>
                 <h1 className="font-headline text-5xl md:text-6xl font-bold tracking-tight text-on-surface">
                     Resume <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-tertiary">Analyzer</span>
@@ -68,7 +71,7 @@ export default function ResumeAnalyzerPage() {
         {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Upload Section */}
-            <section className="lg:col-span-7 bg-surface-container-low rounded-xl p-8 glass-edge">
+            <section className="lg:col-span-7 bg-surface-container-low rounded-xl p-8 glass-edge anim-fade-in-up anim-delay-2 anim-hover-lift">
                 <div className="flex items-center justify-between mb-8">
                     <h2 className="font-headline text-xl font-semibold flex items-center gap-2">
                         <span className="material-symbols-outlined text-primary">cloud_upload</span>
@@ -120,7 +123,7 @@ export default function ResumeAnalyzerPage() {
             {/* Score Gauge Section */}
             <section className="lg:col-span-5 flex flex-col gap-8">
                 {/* Score Meter */}
-                <div className="bg-surface-container-high rounded-xl p-8 glass-edge relative overflow-hidden">
+                <div className="bg-surface-container-high rounded-xl p-8 glass-edge relative overflow-hidden anim-fade-in-up anim-delay-3 anim-hover-lift">
                     <h2 className="font-headline text-xl font-semibold mb-8">ATS Match Score</h2>
                     <div className="flex flex-col items-center justify-center py-6">
                         <div className="relative w-48 h-48 flex items-center justify-center">

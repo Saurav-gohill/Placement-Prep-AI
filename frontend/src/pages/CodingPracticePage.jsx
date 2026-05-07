@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SideNavBar from '../components/layout/SideNavBar';
 import { fetchApi } from '../lib/api';
+import { FloatingShapes } from '../components/animations/Animations3D';
 
 export default function CodingPracticePage() {
   const [code, setCode] = useState("class Solution:\n    def findMedianSortedArrays(self, nums1, nums2):\n        # Implement binary search on the shorter array\n        pass");
@@ -30,7 +31,8 @@ export default function CodingPracticePage() {
     <div className="flex bg-background h-screen overflow-hidden text-on-surface">
       <SideNavBar />
 
-      <main className="md:ml-64 flex-1 flex flex-col min-w-0 bg-background h-screen">
+      <main className="md:ml-64 flex-1 flex flex-col min-w-0 bg-background h-screen relative">
+        <FloatingShapes variant="minimal" />
         {/* IDE Header (Replacing TopNavBar) */}
         <header className="flex items-center justify-between px-6 py-3 bg-[#0b1326]/60 backdrop-blur-xl border-b border-outline-variant/10 z-10 shrink-0">
             <div className="flex items-center gap-4">

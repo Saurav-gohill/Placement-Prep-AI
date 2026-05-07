@@ -20,12 +20,12 @@ async def analyze_resume_text(text: str) -> dict:
             ]
         }
     
-    # Real Implementation (google-genai)
+    # Real Implementation using google-generativeai
     try:
-        from google import genai
-        from google.genai import types
-
-        client = genai.Client(api_key=GEMINI_API_KEY)
+        import google.generativeai as genai
+        
+        genai.configure(api_key=GEMINI_API_KEY)
+        model = genai.GenerativeModel('gemini-1.5-flash')
         
         prompt = f"""
         Analyze the following resume text. Return a strict JSON object with:
@@ -34,13 +34,10 @@ async def analyze_resume_text(text: str) -> dict:
         3. "suggestions": list of strings for improvement.
         
         Resume Text:
-        {text[:2000]} # Limit to save tokens
+        {text[:3000]}
         """
         
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
-            contents=prompt,
-        )
+        response = model.generate_content(prompt)
         
         # Clean up response to dict
         raw_text = response.text
@@ -58,9 +55,13 @@ async def analyze_resume_text(text: str) -> dict:
         }
     except Exception as e:
         print(f"Gemini API Error: {e}")
-        # Fallback
+        # Fallback mock
         return {
-            "score": 60,
-            "keywords_missing": ["Error parsing keywords"],
-            "suggestions": ["Failed to contact Gemini APi."]
+            "score": 68,
+            "keywords_missing": ["Could not parse keywords"],
+            "suggestions": [
+                "AI analysis encountered an issue. Please try again.",
+                "Make sure your resume includes relevant technical keywords.",
+                "Add quantifiable metrics to your achievements."
+            ]
         }

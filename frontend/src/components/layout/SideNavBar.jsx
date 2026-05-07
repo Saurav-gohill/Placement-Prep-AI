@@ -47,7 +47,7 @@ export default function SideNavBar() {
             <div className="bg-gradient-to-br from-secondary-container to-primary-container p-4 rounded-xl mb-6 shadow-lg shadow-primary-container/20 glass-edge">
                 <p className="text-xs font-bold text-white mb-2 uppercase tracking-widest">Upgrade to Pro</p>
                 <p className="text-[10px] text-white/80 mb-3 leading-relaxed">Unlock advanced AI analysis and unlimited coding mock tests.</p>
-                <button className="w-full bg-white text-[#1d00a5] py-2 rounded-lg text-xs font-bold hover:bg-slate-100 transition-colors">Claim Offer</button>
+                <Link to="/payment" className="block w-full bg-white text-[#1d00a5] py-2 rounded-lg text-xs font-bold hover:bg-slate-100 transition-colors text-center">Claim Offer</Link>
             </div>
             <button onClick={handleLogout} className="w-full text-left text-slate-500 py-2 flex items-center gap-3 text-xs font-medium hover:text-red-400 transition-colors">
                 <span className="material-symbols-outlined text-sm">logout</span>

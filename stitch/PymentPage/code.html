@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | PlacementAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#006693",
+                        "secondary-fixed": "#e9ddff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "surface-container-highest": "#2d3449",
+                        "secondary": "#d0bcff",
+                        "on-tertiary-container": "#b8e0ff",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "outline": "#918fa1",
+                        "outline-variant": "#464555",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-bright": "#31394d",
+                        "error-container": "#93000a",
+                        "tertiary": "#89ceff",
+                        "on-primary": "#1d00a5",
+                        "on-tertiary": "#00344d",
+                        "inverse-surface": "#dae2fd",
+                        "on-surface-variant": "#c7c4d8",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "surface-variant": "#2d3449",
+                        "on-secondary-container": "#c4abff",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-container-low": "#131b2e",
+                        "tertiary-fixed": "#c9e6ff",
+                        "inverse-primary": "#4d44e3",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary": "#3c0091",
+                        "on-error": "#690005",
+                        "primary": "#c3c0ff",
+                        "surface-container-high": "#222a3d",
+                        "surface-container-lowest": "#060e20",
+                        "on-primary-container": "#dad7ff",
+                        "background": "#0b1326",
+                        "surface": "#0b1326",
+                        "inverse-on-surface": "#283044",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#c3c0ff",
+                        "surface-dim": "#0b1326",
+                        "on-secondary-fixed": "#23005c",
+                        "primary-container": "#4f46e5",
+                        "on-background": "#dae2fd",
+                        "surface-container": "#171f33",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#dae2fd",
+                        "secondary-container": "#571bc1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-edge {
+            box-shadow: inset 0 0 0 0.5px rgba(195, 192, 255, 0.1);
+        }
+        .glow-track-active {
+            box-shadow: 0 0 12px #89ceff;
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen flex flex-col selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<nav class="bg-[#0b1326]/80 backdrop-blur-xl docked full-width top-0 z-50 tonal-shift-bottom bg-[#131b2e]/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] sticky">
+<div class="flex justify-between items-center px-8 h-16 w-full max-w-7xl mx-auto">
+<div class="text-xl font-bold bg-gradient-to-r from-[#4f46e5] to-[#571bc1] bg-clip-text text-transparent font-['Manrope']">PlacementAI</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-slate-400 font-medium font-['Manrope'] font-semibold tracking-tight hover:text-white transition-all duration-300" href="#">Curriculum</a>
+<a class="text-slate-400 font-medium font-['Manrope'] font-semibold tracking-tight hover:text-white transition-all duration-300" href="#">Mock Tests</a>
+<a class="text-slate-400 font-medium font-['Manrope'] font-semibold tracking-tight hover:text-white transition-all duration-300" href="#">AI Coach</a>
+<a class="text-[#c3c0ff] border-b-2 border-[#4f46e5] pb-1 font-['Manrope'] font-semibold tracking-tight hover:text-white transition-all duration-300" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-gradient-to-r from-primary-container to-secondary-container px-6 py-2 rounded-xl text-white font-semibold font-headline transition-transform active:scale-95">Sign In</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-8 py-12 md:py-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column: Order Summary -->
+<div class="lg:col-span-5 space-y-8">
+<div>
+<h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-4">Complete your <span class="text-primary">Upgrade</span></h1>
+<p class="text-on-surface-variant text-lg">Invest in your career with our precision-engineered AI placement platform.</p>
+</div>
+<div class="surface-container-low rounded-xl p-8 glass-edge relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-tertiary-container text-tertiary-fixed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
+</div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline text-2xl font-bold text-white">Pro Prep Annual</h2>
+<p class="text-on-surface-variant text-sm">Full access to AI capabilities</p>
+</div>
+<div class="text-right">
+<span class="font-headline text-3xl font-extrabold text-white">$99</span>
+<span class="text-on-surface-variant block text-sm">/ year</span>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-sm text-on-surface">Unlimited Mock Interviews</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-sm text-on-surface">Real-time AI Performance Analytics</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-sm text-on-surface">Company-specific Prep Paths</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-sm text-on-surface">Resume Optimization &amp; Scoring</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/15">
+<div class="flex gap-2">
+<input class="flex-grow bg-surface-container-highest border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary outline-none placeholder:text-outline" placeholder="Discount Code" type="text"/>
+<button class="bg-surface-bright text-on-surface px-6 py-3 rounded-xl text-sm font-semibold glass-edge hover:bg-surface-container-high transition-colors">Apply</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6 p-4">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="portrait of a young female professional smiling in soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-TYpSJhOw2OakBHf_nrHxa4tBD6VnxrLKbl7jIFgJZe4bd92-ROlFNUq5NDqyfSoe-uvjrnEMvBKjvCjGalJMN39YKYbtlEhSrZ45OJboBLpErVtB30ZrMU6aXOqqXcugr0IrVlJn4oot9vAePpcBcw8vdA7RmOZW94Wn6CfxIw14mL1xGsOTe1S2BXpXXjpxDjFvyc0S6zYIyKE0izIA_2y7CvN_Xn3fgTB21GyGac3FM4c1NxfmnLOpYZKrQ52NyNfobSKYA18"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="close-up portrait of a male tech professional with warm studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw0cByZQlX7y4iXQqb96cZnsEm7BX996RHfY2j__Vkf8kS2P4brAJIeyZaV1UGVbU_nTQDffTwr0meRxRBn9J-iqz_pXqLKS6c1YVAXLKfAjLXMAJXKE6ZqBWb7RRHE3EvP1TI9orc7pTwSGgrwo_28MJxlYN7it7jTI_lQ0vhcf5bPXCe_SxSW49NgOQscQtJcpTiWSf1eHAue76RGKSEiYfbpU7M45wkXH3YvJTwfNUr-ZYlRJQR07Qbv8p7GWYjLGBXKbCz9bU"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="headshot of a smiling woman with a blurred natural background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJDZIeJwaEWJ82H2-Rt0JaMXvbZZow2Tna4px8SGe0WwC5iUFDjGFxbnDclDehc6L7ANEyi9gbeojvhO9YnGZxpuzsDbTTjGFW1QZCKmA6OzZZqJTJSCbHbfqmLX90hkBWfNWULo9lubyPvtdmTAm9rXbDcALFutVJvycKYf305UtFAuXRUMFT2soNKQ9RT2WR6bhBF3d8ZT86nPpoz11GLWaQEYrDWlrYFXumblnRXYTkJpMrs5Yp1eg9zuMAFhMP5I4oNNPQyGI"/>
+</div>
+<div>
+<p class="font-headline font-bold text-white">Trusted by 50,000+ students</p>
+<p class="text-on-surface-variant text-xs">Join the top 1% of candidates worldwide.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Payment Form -->
+<div class="lg:col-span-7">
+<div class="surface-container-high rounded-xl p-8 md:p-12 glass-edge shadow-[0px_24px_48px_rgba(0,0,0,0.4)]">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline text-2xl font-semibold text-white">Payment Details</h3>
+<div class="flex gap-2">
+<img alt="Visa" class="h-6 w-auto opacity-70 grayscale hover:grayscale-0 transition-all cursor-default" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsvl-yppu45eTVXm2UvjeVA7vVL07qxAVhuEuVkpkhMtvbNDxFMhxFy7c1Yqox762qx_5KNvOPylcwQVvARESDpxRuOspzEdtF5FmrzDIDOvAULG7DmIu-h27C66__yfcyWtz4hvLtra1YriAnGmx6AGzX5APSK2RXMV8zxxB1ZpBmWOMeAB2f3hSYSEe4ZP2QdDsrhYuAF-clewLJEz8pQts8QFV1WGgexnV2pIVmHESLQGTxDa3gF68R-NC3xyyjBdBBcwbbN8M"/>
+<img alt="Mastercard" class="h-6 w-auto opacity-70 grayscale hover:grayscale-0 transition-all cursor-default" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGS1OzMwNi-nuYLBx3XABIwUGhEN4ubm4VAMJwSynMruUzJt-BWS3q-M1DD0vki_A8B_lnE3DctK0ES9QojJkJvHqvWiQxsk76s4ZHFLM8tedAryRWRSd8pEJ71xtSH-BhOPfUsEtSA3kVBRFHYu02JHR-vqAuRVK12mx1yciDqa4rvTMFbI1THNuAHMR7pEPg11n-l0eqNE3WknW8wxZJ35U_1-OHuVQx-uX_UJtYpl8RpO2HtpWZihNoFaLnAsFpZlAEi3swboM"/>
+<img alt="PayPal" class="h-6 w-auto opacity-70 grayscale hover:grayscale-0 transition-all cursor-default" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUf5ci7fACEKaMrihMSfQShu-OWCIN1FsdOBew6HvrKlKW_37QVquiS9N-oKlPhnmjoFoW-tlc0rW8eoyFattmIge8B9Gg-N23MW7autUjfs6abXtTUwWfog5LLct39oNwel3gyaNtzeYV6uDUJDZdQSRFVccIDTA86CSlqRUNOHcn4uYea5WkAyhxbuliSfKzqEoPuKWQ6HlQIG13y_5N0gtkoX_2kH_mh9GgzB3-WuBkZbhramSYWZjKuFiaGA-qeJrbWY86DIw"/>
+</div>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest px-1">Cardholder Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-primary outline-none transition-shadow placeholder:text-outline/50" placeholder="e.g. Alexander Pierce" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest px-1">Card Number</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl pl-5 pr-12 py-4 text-white font-mono focus:ring-2 focus:ring-primary outline-none transition-shadow placeholder:text-outline/50" placeholder="•••• •••• •••• ••••" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant">lock</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest px-1">Expiry Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-primary outline-none transition-shadow placeholder:text-outline/50" placeholder="MM / YY" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest px-1">CVC</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl px-5 py-4 text-white focus:ring-2 focus:ring-primary outline-none transition-shadow placeholder:text-outline/50" placeholder="•••" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" title="3-digit security code">help_outline</span>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<div class="flex items-center gap-3 mb-8">
+<input class="rounded bg-surface-container-low border-outline-variant text-primary-container focus:ring-primary-container focus:ring-offset-background" id="save-card" type="checkbox"/>
+<label class="text-sm text-on-surface-variant" for="save-card">Save card information for future renewals</label>
+</div>
+<button class="w-full bg-gradient-to-r from-primary-container to-secondary-container py-5 rounded-xl text-white font-headline font-bold text-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span>Complete Purchase</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-on-surface-variant mt-6 flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-xs">shield_lock</span>
+                                Encrypted 256-bit secure checkout
+                            </p>
+</div>
+</form>
+</div>
+<div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 px-4">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-3xl">verified</span>
+<div>
+<p class="text-sm font-semibold text-white">Money-Back Guarantee</p>
+<p class="text-xs">No questions asked within 7 days.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-3xl">chat_bubble</span>
+<div>
+<p class="text-sm font-semibold text-white">24/7 Expert Support</p>
+<p class="text-xs">Always here to help you succeed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0b1326] full-width py-12 mt-auto tonal-shift-top bg-[#131b2e] border-t border-[#464555]/15">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 w-full max-w-7xl mx-auto gap-6">
+<div class="font-['Manrope'] font-bold text-slate-200">PlacementAI</div>
+<div class="flex flex-wrap justify-center gap-8 text-sm font-['Inter'] tracking-wide">
+<a class="text-slate-500 hover:text-[#c3c0ff] transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-[#c3c0ff] transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-[#c3c0ff] transition-colors opacity-80 hover:opacity-100" href="#">Security</a>
+<a class="text-slate-500 hover:text-[#c3c0ff] transition-colors opacity-80 hover:opacity-100" href="#">Refunds</a>
+</div>
+<div class="text-[#c3c0ff] text-xs font-['Inter'] tracking-wide opacity-80">© 2024 PlacementAI. Precision Engineered Career Growth.</div>
+</div>
+</footer>
+</body></html>

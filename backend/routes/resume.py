@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, UploadFile, File, HTTPException
-import PyPDF2
 import io
 import uuid
 
@@ -20,10 +19,23 @@ async def analyze_resume(
         
     try:
         contents = await file.read()
-        pdf_reader = PyPDF2.PdfReader(io.BytesIO(contents))
+        
+        # Try pdfplumber first (more reliable), fallback to PyPDF2
         text = ""
-        for page in pdf_reader.pages:
-            text += page.extract_text()
+        try:
+            import pdfplumber
+            with pdfplumber.open(io.BytesIO(contents)) as pdf:
+                for page in pdf.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        text += page_text + "\n"
+        except Exception:
+            import PyPDF2
+            pdf_reader = PyPDF2.PdfReader(io.BytesIO(contents))
+            for page in pdf_reader.pages:
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + "\n"
             
         if not text.strip():
             raise HTTPException(status_code=400, detail="Could not extract text from PDF.")
@@ -37,14 +49,30 @@ async def analyze_resume(
         # Mock file URL since we aren't uploading to Supabase Storage yet
         file_url = f"https://mockstorage.com/{uuid.uuid4()}.pdf"
         
-        resp = db.table("resumes").insert({
-            "user_id": user_id,
-            "file_url": file_url,
-            "score": analysis["score"],
-            "analysis_data": analysis
-        }).execute()
+        try:
+            resp = db.table("resumes").insert({
+                "user_id": user_id,
+                "resume_url": file_url,
+                "ats_score": analysis.get("score", 0),
+                "ai_feedback": analysis
+            }).execute()
 
-        return {"message": "Success", "data": resp.data[0]}
+            result_data = resp.data[0] if resp.data else {}
+            result_data["analysis_data"] = analysis
+            return {"message": "Success", "data": result_data}
+        except Exception as db_err:
+            # If DB insert fails (e.g. FK constraint because user not in users table),
+            # still return the analysis - the AI result is the important part
+            print(f"DB insert warning: {db_err}")
+            return {
+                "message": "Success (analysis only - DB save skipped)", 
+                "data": {
+                    "analysis_data": analysis,
+                    "ats_score": analysis.get("score", 0)
+                }
+            }
 
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useNavigate, Link } from 'react-router-dom';
+import { FloatingShapes, ParticleField } from '../components/animations/Animations3D';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');
@@ -35,7 +36,9 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4 relative overflow-hidden geometric-overlay">
-      <div className="w-full max-w-md bg-surface-container-low p-8 rounded-2xl glass-edge shadow-2xl relative z-10">
+      <FloatingShapes variant="minimal" />
+      <ParticleField count={20} />
+      <div className="w-full max-w-md bg-surface-container-low p-8 rounded-2xl glass-edge shadow-2xl relative z-10 anim-fade-in-scale">
         <div className="text-center mb-8">
           <Link to="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4f46e5] to-[#571bc1] font-headline">PlacementAI</Link>
           <h2 className="text-2xl font-headline font-bold text-white mt-6 mb-2">Create an Account</h2>

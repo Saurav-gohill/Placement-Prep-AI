@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SideNavBar from '../components/layout/SideNavBar';
 import { fetchApi } from '../lib/api';
+import { FloatingShapes, GlowOrbs } from '../components/animations/Animations3D';
 
 export default function InterviewPage() {
     const [role, setRole] = useState("Frontend");
@@ -73,9 +74,11 @@ export default function InterviewPage() {
     <div className="flex bg-surface min-h-screen text-on-surface">
       <SideNavBar />
 
-      <main className="md:ml-64 flex-1 flex flex-col min-h-screen p-6 md:p-10 overflow-y-auto no-scrollbar">
+      <main className="md:ml-64 flex-1 flex flex-col min-h-screen p-6 md:p-10 overflow-y-auto no-scrollbar relative">
+        <FloatingShapes variant="ambient" />
+        <GlowOrbs count={2} />
         {/* Header */}
-        <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10 anim-fade-in-up anim-delay-1">
             <div className="max-w-2xl">
                 <h1 className="font-headline text-5xl font-bold tracking-tight text-on-surface mb-4">
                     AI Mock <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Interview</span>
@@ -98,7 +101,7 @@ export default function InterviewPage() {
             <section className="lg:col-span-7 flex flex-col gap-6">
                 
                 {/* Question Card */}
-                <div className="bg-surface-container-low rounded-xl p-8 glass-edge relative overflow-hidden">
+                <div className="bg-surface-container-low rounded-xl p-8 glass-edge relative overflow-hidden anim-fade-in-up anim-delay-2">
                     <div className="absolute top-0 right-0 p-4">
                         <span className="bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20 text-[10px] font-bold tracking-widest uppercase">QUESTION {currentQIndex + 1}/{questions.length || 0}</span>
                     </div>
@@ -126,7 +129,7 @@ export default function InterviewPage() {
                 </div>
 
                 {/* Chat/Transcript Interface */}
-                <div className="bg-surface-container-low rounded-xl flex flex-col h-[500px] glass-edge">
+                <div className="bg-surface-container-low rounded-xl flex flex-col h-[500px] glass-edge anim-fade-in-up anim-delay-3">
                     <div className="p-4 border-b border-outline-variant/15 flex items-center justify-between">
                         <span className="font-headline text-sm font-bold text-slate-300">Live Transcript</span>
                         <div className="flex items-center gap-2">
@@ -181,7 +184,7 @@ export default function InterviewPage() {
                 </div>
 
                 {/* AI Insights Panel */}
-                <div className="bg-surface-container-low rounded-xl p-6 glass-edge">
+                <div className="bg-surface-container-low rounded-xl p-6 glass-edge anim-fade-in-up anim-delay-3 anim-hover-lift">
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="font-headline font-bold text-lg">AI Performance Metrics</h2>
                         <span className="material-symbols-outlined text-tertiary">query_stats</span>

@@ -2,6 +2,7 @@ import React from 'react';
 import SideNavBar from '../components/layout/SideNavBar';
 import Footer from '../components/layout/Footer';
 import { useAuth } from '../context/AuthContext';
+import { FloatingShapes, GlowOrbs } from '../components/animations/Animations3D';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -11,6 +12,8 @@ export default function Dashboard() {
       <SideNavBar />
       
       <main className="md:ml-64 flex-1 flex flex-col h-screen overflow-y-auto no-scrollbar relative">
+        <FloatingShapes variant="ambient" />
+        <GlowOrbs count={2} />
         <header className="sticky top-0 z-30 bg-[#0b1326]/60 backdrop-blur-xl flex justify-between items-center w-full px-8 py-4">
           <div className="flex items-center gap-4">
             <h1 className="font-headline font-bold text-xl tracking-tight text-on-surface">Dashboard Overview</h1>
@@ -35,7 +38,7 @@ export default function Dashboard() {
         <section className="p-8 max-w-7xl mx-auto space-y-8 w-full flex-grow">
           {/* Hero Stats */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 relative overflow-hidden bg-surface-container-low rounded-xl p-8 glass-edge">
+              <div className="lg:col-span-2 relative overflow-hidden bg-surface-container-low rounded-xl p-8 glass-edge anim-fade-in-up anim-delay-1 anim-hover-lift">
                   <div className="relative z-10">
                       <span className="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Predictive Insight</span>
                       <h2 className="font-headline text-3xl font-bold mt-4 mb-2 max-w-md">You're in the top 5% of candidates for FAANG roles.</h2>
@@ -47,7 +50,7 @@ export default function Dashboard() {
                       <span className="material-symbols-outlined text-[120px]">auto_awesome</span>
                   </div>
               </div>
-              <div className="bg-surface-container-high rounded-xl p-6 flex flex-col justify-between glass-edge">
+              <div className="bg-surface-container-high rounded-xl p-6 flex flex-col justify-between glass-edge anim-fade-in-up anim-delay-2 anim-hover-lift">
                   <div>
                       <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">ATS Resume Score</p>
                       <div className="flex items-end gap-2">
@@ -69,7 +72,7 @@ export default function Dashboard() {
 
           {/* Performance Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer anim-fade-in-up anim-delay-1 anim-hover-lift">
                   <div className="flex items-center justify-between mb-4">
                       <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                           <span className="material-symbols-outlined text-emerald-400">code</span>
@@ -82,7 +85,7 @@ export default function Dashboard() {
                       <span className="text-[10px] text-slate-400">142 Solved</span>
                   </div>
               </div>
-              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer anim-fade-in-up anim-delay-2 anim-hover-lift">
                   <div className="flex items-center justify-between mb-4">
                       <div className="w-10 h-10 rounded-lg bg-[#571bc1]/10 flex items-center justify-center">
                           <span className="material-symbols-outlined text-[#c4abff]">settings_voice</span>
@@ -95,7 +98,7 @@ export default function Dashboard() {
                       <span className="text-xs font-bold text-white">4.2/5.0</span>
                   </div>
               </div>
-              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer anim-fade-in-up anim-delay-3 anim-hover-lift">
                   <div className="flex items-center justify-between mb-4">
                       <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
                           <span className="material-symbols-outlined text-orange-400">psychology</span>
@@ -107,7 +110,7 @@ export default function Dashboard() {
                       92% <span className="text-[10px] font-normal text-slate-500">Percentile</span>
                   </div>
               </div>
-              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer">
+              <div className="bg-surface-container-low p-5 rounded-xl glass-edge hover:scale-[1.02] transition-transform cursor-pointer anim-fade-in-up anim-delay-4 anim-hover-lift">
                   <div className="flex items-center justify-between mb-4">
                       <div className="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center">
                           <span className="material-symbols-outlined text-sky-400">timer</span>
