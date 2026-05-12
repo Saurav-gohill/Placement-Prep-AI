@@ -19,6 +19,7 @@ import CodingPracticePage from './pages/CodingPracticePage';
 import AptitudePracticePage from './pages/AptitudePracticePage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import PaymentPage from './pages/PaymentPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/aptitude" element={<AptitudePracticePage />} />
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Routes>
       </BrowserRouter>

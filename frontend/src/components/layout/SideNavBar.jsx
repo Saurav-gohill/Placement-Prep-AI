@@ -14,6 +14,7 @@ export default function SideNavBar() {
     { name: 'Coding Practice', path: '/coding', icon: 'code' },
     { name: 'Aptitude', path: '/aptitude', icon: 'psychology' },
     { name: 'Analytics', path: '/analytics', icon: 'leaderboard' },
+    { name: 'Profile', path: '/profile', icon: 'person' },
   ];
 
   const handleLogout = async () => {
@@ -73,6 +74,10 @@ export default function SideNavBar() {
         <NavLink to="/interview" className={({isActive}) => clsx("flex flex-col items-center gap-1", isActive ? "text-[#c3c0ff]" : "text-slate-500")}>
           <span className="material-symbols-outlined">settings_voice</span>
           <span className="text-[8px] font-bold">Interview</span>
+        </NavLink>
+        <NavLink to="/profile" className={({isActive}) => clsx("flex flex-col items-center gap-1", isActive ? "text-[#c3c0ff]" : "text-slate-500")}>
+          <span className="material-symbols-outlined">person</span>
+          <span className="text-[8px] font-bold">Profile</span>
         </NavLink>
       </nav>
     </>
