@@ -46,7 +46,7 @@ Built with a **React + Vite** frontend and **FastAPI** backend, the platform off
 | Module | Description | AI-Powered |
 |--------|-------------|:----------:|
 | **📄 Resume Analyzer** | Upload PDF resumes for ATS scoring, keyword extraction, and AI-driven improvement suggestions | ✅ Gemini AI |
-| **🎙️ Mock Interview** | Dynamic AI-generated interview questions with real-time answer evaluation and feedback | ✅ Gemini AI |
+| **🎙️ Mock Interview** | Dynamic AI-generated interview questions with real-time answer evaluation and feedback | ✅ Sarvam AI |
 | **💻 Coding Practice** | Multi-language code sandbox with Monaco Editor, AI-powered hints and solution analysis | ✅ Gemini AI |
 | **🧠 Aptitude Tests** | Quantitative and logical reasoning practice with AI-generated questions and explanations | ✅ Gemini AI |
 | **📊 Performance Analytics** | Comprehensive dashboard tracking progress across all modules with visual charts | ✅ |
@@ -111,38 +111,38 @@ Built with a **React + Vite** frontend and **FastAPI** backend, the platform off
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────┐
 │                     CLIENT (Browser)                     │
 │  ┌─────────────────────────────────────────────────────┐ │
 │  │          React 19 + Vite 8 + Tailwind CSS 4         │ │
 │  │  ┌──────────┬──────────┬──────────┬──────────────┐  │ │
-│  │  │ Landing  │Dashboard │ AI Tools │   Profile     │  │ │
-│  │  │ Pages    │          │ (5 Mods) │   Payment     │  │ │
+│  │  │ Landing  │Dashboard │ AI Tools │   Profile    │  │ │
+│  │  │ Pages    │          │ (5 Mods) │   Payment    │  │ │
 │  │  └──────────┴──────────┴──────────┴──────────────┘  │ │
-│  │              │                    │                  │ │
+│  │              │                    │                 │ │
 │  │     Supabase Auth SDK      Axios HTTP Client        │ │
 │  └──────────┬──────────────────────┬───────────────────┘ │
 └─────────────┼──────────────────────┼─────────────────────┘
               │                      │
               ▼                      ▼
-┌──────────────────┐   ┌──────────────────────────────────┐
+┌──────────────────┐   ┌───────────────────────────────────┐
 │                  │   │         FastAPI Backend           │
-│    Supabase      │   │  ┌────────────────────────────┐  │
-│  ┌────────────┐  │   │  │     API Routes             │  │
-│  │    Auth     │  │   │  │  /resume  /interview       │  │
-│  │  (JWT+SSO)  │  │   │  │  /coding  /aptitude        │  │
-│  ├────────────┤  │   │  │  /analytics /auth           │  │
-│  │  PostgreSQL │  │◄─┼──│  └────────────────────────┘  │  │
-│  │  Database   │  │   │  │           │                 │  │
-│  │  (Tables)   │  │   │  │    Gemini AI Service        │  │
-│  └────────────┘  │   │  │    PDFPlumber Parser         │  │
-└──────────────────┘   │  └────────────────────────────┘  │
-                       └──────────────────────────────────┘
+│    Supabase      │   │  ┌────────────────────────────┐   │
+│  ┌────────────┐  │   │  │     API Routes             │   │
+│  │    Auth    │  │   │  │  /resume  /interview       │   │
+│  │  (JWT+SSO) │  │   │  │  /coding  /aptitude        │   │
+│  ├────────────┤  │   │  │  /analytics /auth          │   │
+│  │  PostgreSQL│  │◄─┼──│  └────────────────────────┘ │   │
+│  │  Database  │  │   │  │           │                │   │
+│  │  (Tables)  │  │   │  │    Gemini AI Service       │   │
+│  └────────────┘  │   │  │    PDFPlumber Parser       │   │
+└──────────────────┘   │  └────────────────────────────┘   │
+                       └───────────────────────────────────┘
                                      │
                                      ▼
                         ┌──────────────────────┐
-                        │   Google Gemini API   │
-                        │   (gemini-pro model)  │
+                        │   Google Gemini API  │
+                        │   (gemini-pro model) │
                         └──────────────────────┘
 ```
 
@@ -152,7 +152,6 @@ Built with a **React + Vite** frontend and **FastAPI** backend, the platform off
 
 ### Prerequisites
 
-- **Node.js** ≥ 18.x
 - **Python** ≥ 3.10
 - **Supabase Account** — [supabase.com](https://supabase.com)
 - **Google AI API Key** — [aistudio.google.com](https://aistudio.google.com/apikey)
