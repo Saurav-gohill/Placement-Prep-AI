@@ -5,155 +5,237 @@ from dotenv import load_dotenv
 load_dotenv()
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-SARVAM_API_KEY = os.environ.get("SARVAM_API_KEY")
+
+
+def _get_gemini_model():
+    """Lazy-load the Gemini model."""
+    import google.generativeai as genai
+    genai.configure(api_key=GEMINI_API_KEY)
+    return genai.GenerativeModel('gemini-2.0-flash')
+
 
 async def get_interview_questions(role: str) -> list[str]:
-    """Generates interview questions using Gemini AI for the given role."""
-    
-    if GEMINI_API_KEY and GEMINI_API_KEY != "placeholder_key":
-        try:
-            import google.generativeai as genai
-            genai.configure(api_key=GEMINI_API_KEY)
-            model = genai.GenerativeModel('gemini-2.0-flash')
-            
-            prompt = f"""You are a senior technical interviewer at a FAANG company. Generate exactly 5 interview questions for a {role} position.
+    """Generates dynamic interview questions using Gemini."""
+    if not GEMINI_API_KEY or GEMINI_API_KEY == "placeholder_key":
+        return _mock_questions(role)
 
-Mix of question types:
-1. One behavioral/introduction question
-2. Two technical concept questions
-3. One problem-solving/scenario question
-4. One system design or architecture question
+    try:
+        model = _get_gemini_model()
+        prompt = f"""Generate exactly 5 technical interview questions for a {role} position.
+Return as a JSON array of strings. No markdown, no explanation, just the JSON array.
+Questions should progress from easy to hard. Mix behavioral and technical.
+Example: ["question1", "question2", ...]"""
 
-Return ONLY a JSON array of 5 strings. No markdown, no explanation.
-Example: ["Question 1?", "Question 2?", "Question 3?", "Question 4?", "Question 5?"]"""
+        response = model.generate_content(prompt)
+        raw = response.text.strip()
+        if "```json" in raw:
+            raw = raw.split("```json")[1].split("```")[0].strip()
+        elif "```" in raw:
+            raw = raw.split("```")[1].split("```")[0].strip()
+        return json.loads(raw)
+    except Exception as e:
+        print(f"Gemini questions error: {e}")
+        return _mock_questions(role)
 
-            response = model.generate_content(prompt)
-            raw = response.text.strip()
-            if "```json" in raw:
-                raw = raw.split("```json")[1].split("```")[0].strip()
-            elif "```" in raw:
-                raw = raw.split("```")[1].split("```")[0].strip()
-            
-            questions = json.loads(raw)
-            if isinstance(questions, list) and len(questions) >= 3:
-                return questions[:5]
-        except Exception as e:
-            print(f"Gemini question gen error: {e}")
-    
-    # Fallback mock questions
-    role_lower = role.lower()
-    if "frontend" in role_lower:
-        return [
-            "Tell me about yourself and your experience with frontend development.",
-            "What exactly is the Virtual DOM in React, and how does it improve performance?",
-            "Explain the difference between useMemo and useCallback hooks with real-world examples.",
-            "You're building a dashboard that loads data from 5 different APIs. How would you optimize the loading experience?",
-            "How would you architect a micro-frontend system for a large e-commerce platform?"
-        ]
-    elif "backend" in role_lower:
-        return [
-            "Walk me through your most challenging backend project.",
-            "Explain the CAP theorem and how it influences your database choices.",
-            "How does connection pooling work and why is it important in production?",
-            "A critical API endpoint is timing out under load. Walk me through your debugging process.",
-            "Design a rate-limiting system that handles 10,000 requests per second."
-        ]
-    elif "data" in role_lower:
-        return [
-            "What drew you to data analysis and what's your analytical approach?",
-            "Explain the difference between correlation and causation with a business example.",
-            "When would you use a window function vs a GROUP BY in SQL?",
-            "You notice a 30% drop in user engagement. How would you investigate this?",
-            "Design a real-time analytics pipeline for an e-commerce platform."
-        ]
-    else:
-        return [
-            f"Tell me about yourself and why you're interested in the {role} position.",
-            "Describe a time you solved a complex technical problem under pressure.",
-            "What's a technology you recently learned and how did you apply it?",
-            "Your team disagrees on a technical approach. How do you handle it?",
-            "Where do you see yourself in 3-5 years and how does this role fit in?"
-        ]
+
+async def chat_interview(role: str, difficulty: str, conversation_history: list, user_message: str) -> dict:
+    """
+    Conducts a conversational interview using Gemini.
+    Maintains full chat context for natural follow-ups.
+    Returns the AI interviewer's response + live evaluation.
+    """
+    if not GEMINI_API_KEY or GEMINI_API_KEY == "placeholder_key":
+        return _mock_chat_response(user_message)
+
+    try:
+        model = _get_gemini_model()
+
+        # Build conversation context
+        history_text = ""
+        for msg in conversation_history:
+            role_label = "Interviewer" if msg["role"] == "ai" else "Candidate"
+            history_text += f"{role_label}: {msg['content']}\n"
+
+        prompt = f"""You are an expert {difficulty}-level technical interviewer for a {role} position.
+You are conducting a live, one-on-one voice interview with a candidate.
+
+RULES:
+- Be conversational and natural, like a real human interviewer
+- Ask ONE question or follow-up at a time
+- If the candidate's answer is vague, probe deeper with a follow-up question
+- If the candidate's answer is strong, acknowledge it briefly and move to a new topic
+- Mix technical questions with behavioral/situational questions
+- Be encouraging but honest
+- Keep your responses concise (2-4 sentences max) — this will be spoken aloud
+- NEVER break character or mention you're an AI
+
+CONVERSATION SO FAR:
+{history_text}
+
+Candidate's latest response: {user_message}
+
+Now respond as the interviewer. Return ONLY a JSON object:
+{{
+  "response": "<your next question or follow-up — keep it natural and conversational>",
+  "evaluation": {{
+    "technical_score": <0-100, how technically accurate was the candidate's last answer>,
+    "communication_score": <0-100, how well they communicated>,
+    "confidence_score": <0-100, how confident they seemed based on word choice>
+  }},
+  "observation": "<one brief real-time observation about the candidate's performance, e.g., 'Good use of specific examples' or 'Consider mentioning scalability aspects'>"
+}}"""
+
+        response = model.generate_content(prompt)
+        raw = response.text.strip()
+        if "```json" in raw:
+            raw = raw.split("```json")[1].split("```")[0].strip()
+        elif "```" in raw:
+            raw = raw.split("```")[1].split("```")[0].strip()
+
+        data = json.loads(raw)
+        return {
+            "response": data.get("response", "Could you elaborate on that?"),
+            "evaluation": data.get("evaluation", {"technical_score": 70, "communication_score": 70, "confidence_score": 70}),
+            "observation": data.get("observation", "")
+        }
+    except Exception as e:
+        print(f"Gemini chat error: {e}")
+        return _mock_chat_response(user_message)
+
+
+async def generate_interview_report(role: str, difficulty: str, conversation_history: list) -> dict:
+    """
+    Generates a comprehensive interview performance report.
+    """
+    if not GEMINI_API_KEY or GEMINI_API_KEY == "placeholder_key":
+        return _mock_report()
+
+    try:
+        model = _get_gemini_model()
+
+        history_text = ""
+        for msg in conversation_history:
+            role_label = "Interviewer" if msg["role"] == "ai" else "Candidate"
+            history_text += f"{role_label}: {msg['content']}\n"
+
+        prompt = f"""You just finished interviewing a candidate for a {difficulty}-level {role} position.
+Here is the full conversation transcript:
+
+{history_text}
+
+Generate a comprehensive performance report. Return ONLY a JSON object:
+{{
+  "overall_score": <0-100>,
+  "verdict": "<STRONG HIRE | HIRE | MAYBE | NO HIRE>",
+  "summary": "<2-3 sentence overall assessment>",
+  "scores": {{
+    "technical_knowledge": <0-100>,
+    "communication": <0-100>,
+    "problem_solving": <0-100>,
+    "confidence": <0-100>,
+    "cultural_fit": <0-100>
+  }},
+  "strengths": ["<strength 1>", "<strength 2>", "<strength 3>"],
+  "improvements": ["<area to improve 1>", "<area to improve 2>", "<area to improve 3>"],
+  "question_breakdown": [
+    {{
+      "question": "<interviewer question>",
+      "candidate_answer_summary": "<brief summary of what candidate said>",
+      "score": <0-100>,
+      "feedback": "<specific feedback for this answer>"
+    }}
+  ]
+}}"""
+
+        response = model.generate_content(prompt)
+        raw = response.text.strip()
+        if "```json" in raw:
+            raw = raw.split("```json")[1].split("```")[0].strip()
+        elif "```" in raw:
+            raw = raw.split("```")[1].split("```")[0].strip()
+
+        return json.loads(raw)
+    except Exception as e:
+        print(f"Gemini report error: {e}")
+        return _mock_report()
 
 
 async def evaluate_interview_response(role: str, question: str, response_text: str) -> dict:
-    """Evaluates the interview answer using Gemini AI with detailed feedback."""
-    
-    if GEMINI_API_KEY and GEMINI_API_KEY != "placeholder_key":
-        try:
-            import google.generativeai as genai
-            genai.configure(api_key=GEMINI_API_KEY)
-            model = genai.GenerativeModel('gemini-2.0-flash')
-            
-            prompt = f"""You are a senior interviewer evaluating a candidate's response. Be constructive but honest.
+    """Legacy evaluate function for backward compatibility."""
+    result = await chat_interview(role, "Mid", [], response_text)
+    return {
+        "technical_accuracy": result["evaluation"]["technical_score"],
+        "communication": result["evaluation"]["communication_score"],
+        "feedback": result["response"]
+    }
 
-Role: {role}
-Question: {question}
-Candidate's Answer: {response_text}
 
-Return a strict JSON object:
-{{
-  "technical_accuracy": <integer 0-100>,
-  "communication": <integer 0-100>,
-  "confidence": <integer 0-100>,
-  "feedback": "<2-3 sentences of specific, actionable feedback. Mention what was good AND what to improve. Reference specific parts of their answer.>",
-  "improved_answer_hint": "<1 sentence suggesting what an ideal answer would include that was missing>",
-  "strengths": ["<strength 1>", "<strength 2>"],
-  "improvements": ["<improvement 1>", "<improvement 2>"]
-}}
+def _mock_questions(role):
+    return [
+        f"Tell me about yourself and why you're interested in {role}.",
+        "Describe a challenging project you worked on recently.",
+        "How do you approach debugging a complex issue?",
+        "Explain a concept you're passionate about to a non-technical person.",
+        "Where do you see yourself growing in the next 2-3 years?"
+    ]
 
-Return ONLY valid JSON. No markdown."""
 
-            response = model.generate_content(prompt)
-            raw = response.text.strip()
-            if "```json" in raw:
-                raw = raw.split("```json")[1].split("```")[0].strip()
-            elif "```" in raw:
-                raw = raw.split("```")[1].split("```")[0].strip()
-            
-            data = json.loads(raw)
-            return {
-                "technical_accuracy": data.get("technical_accuracy", 70),
-                "communication": data.get("communication", 70),
-                "confidence": data.get("confidence", 70),
-                "feedback": data.get("feedback", "Good response. Try adding more specific examples."),
-                "improved_answer_hint": data.get("improved_answer_hint", ""),
-                "strengths": data.get("strengths", []),
-                "improvements": data.get("improvements", [])
-            }
-        except Exception as e:
-            print(f"Gemini evaluate error: {e}")
-    
-    # Fallback mock evaluation
-    word_count = len(response_text.split())
-    
+def _mock_chat_response(user_message):
+    word_count = len(user_message.split())
     if word_count < 10:
         return {
-            "technical_accuracy": 30,
-            "communication": 40,
-            "confidence": 35,
-            "feedback": "Your response was too brief. Interviewers expect detailed answers with examples. Try using the STAR method: Situation, Task, Action, Result.",
-            "improved_answer_hint": "Expand with a concrete example from your experience and explain the technical reasoning.",
-            "strengths": ["Concise"],
-            "improvements": ["Add technical depth", "Include real examples", "Elaborate on reasoning"]
+            "response": "I see. Could you elaborate a bit more on that? Maybe walk me through a specific example from your experience?",
+            "evaluation": {"technical_score": 40, "communication_score": 50, "confidence_score": 45},
+            "observation": "Response was brief — try to provide more detail and examples."
         }
     elif word_count > 50:
         return {
-            "technical_accuracy": 82,
-            "communication": 88,
-            "confidence": 85,
-            "feedback": "Strong answer with good detail. You demonstrated solid understanding of the concepts. Consider structuring your response more clearly with an intro statement before diving into details.",
-            "improved_answer_hint": "Add a brief concluding statement that ties back to the original question.",
-            "strengths": ["Good technical depth", "Clear articulation"],
-            "improvements": ["Structure with intro-body-conclusion", "Be slightly more concise"]
+            "response": "That's a thorough answer, I appreciate the detail. Let me ask you something different — how do you handle disagreements with team members about technical decisions?",
+            "evaluation": {"technical_score": 82, "communication_score": 88, "confidence_score": 85},
+            "observation": "Great depth in the response with specific examples. Strong communication."
         }
     else:
         return {
-            "technical_accuracy": 65,
-            "communication": 72,
-            "confidence": 68,
-            "feedback": "Decent response covering the basics. You could strengthen it by adding a real-world example from your own experience and explaining the 'why' behind your technical choices.",
-            "improved_answer_hint": "Add a specific project example where you applied this concept and the outcome.",
-            "strengths": ["Covers fundamentals"],
-            "improvements": ["Add depth with examples", "Explain trade-offs", "Show practical experience"]
+            "response": "Good answer. Can you tell me more about how you'd optimize that solution for scale? What would change if the user base grew 10x?",
+            "evaluation": {"technical_score": 68, "communication_score": 72, "confidence_score": 70},
+            "observation": "Solid foundation — consider adding scalability and performance context."
         }
+
+
+def _mock_report():
+    return {
+        "overall_score": 74,
+        "verdict": "HIRE",
+        "summary": "The candidate demonstrated solid technical fundamentals with good communication skills. Areas for improvement include system design thinking and providing more quantified examples of impact.",
+        "scores": {
+            "technical_knowledge": 72,
+            "communication": 80,
+            "problem_solving": 70,
+            "confidence": 75,
+            "cultural_fit": 78
+        },
+        "strengths": [
+            "Clear and structured communication style",
+            "Good understanding of core concepts",
+            "Shows genuine enthusiasm for learning"
+        ],
+        "improvements": [
+            "Provide more specific metrics when discussing achievements",
+            "Deepen system design and architecture knowledge",
+            "Practice answering behavioral questions with the STAR method"
+        ],
+        "question_breakdown": [
+            {
+                "question": "Tell me about yourself",
+                "candidate_answer_summary": "Gave background overview with relevant experience",
+                "score": 75,
+                "feedback": "Good overview but could be more concise and role-targeted"
+            },
+            {
+                "question": "Describe a challenging project",
+                "candidate_answer_summary": "Discussed a project with technical challenges",
+                "score": 72,
+                "feedback": "Good story but missing quantifiable outcomes"
+            }
+        ]
+    }

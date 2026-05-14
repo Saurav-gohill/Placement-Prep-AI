@@ -1,14 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
 from dependencies import get_current_user
 from database import get_db
-from models import InterviewStartRequest, InterviewEvaluateRequest
+from models import InterviewStartRequest, InterviewEvaluateRequest, InterviewChatRequest, InterviewReportRequest
 from supabase import Client
-from services.sarvam_service import get_interview_questions, evaluate_interview_response
+from services.sarvam_service import get_interview_questions, evaluate_interview_response, chat_interview, generate_interview_report
+import uuid
 
 router = APIRouter()
-
-# In-memory session store for tracking questions per session
-_sessions = {}
 
 @router.post('/start')
 async def start_session(
@@ -32,92 +30,88 @@ async def start_session(
             session_id = resp.data[0]['session_id'] if resp.data else None
         except Exception as db_err:
             print(f"DB insert warning for interview: {db_err}")
-            import uuid
             session_id = str(uuid.uuid4())
         
-        # Store session data in memory for question tracking
-        _sessions[session_id] = {
-            "role": req.role_targeted,
-            "questions": questions,
-            "current_q": 0,
-            "scores": []
-        }
+        # Generate the opening message from the AI interviewer
+        opening = f"Hi there! Welcome to your {req.difficulty}-level {req.role_targeted} interview. I'll be your interviewer today. Let's start with something simple — can you tell me a little about yourself and what interests you about {req.role_targeted}?"
         
-        return {"session_id": session_id, "questions": questions}
+        return {
+            "session_id": session_id,
+            "questions": questions,
+            "opening_message": opening
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post('/chat')
+async def chat_with_interviewer(
+    req: InterviewChatRequest,
+    user_id: str = Depends(get_current_user)
+):
+    """ChatGPT-style conversational interview endpoint."""
+    try:
+        result = await chat_interview(
+            role=req.role,
+            difficulty=req.difficulty,
+            conversation_history=req.conversation_history,
+            user_message=req.message
+        )
+        
+        return {
+            "response": result["response"],
+            "evaluation": result["evaluation"],
+            "observation": result["observation"]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post('/report')
+async def generate_report(
+    req: InterviewReportRequest,
+    user_id: str = Depends(get_current_user)
+):
+    """Generate a comprehensive performance report at the end of the interview."""
+    try:
+        report = await generate_interview_report(
+            role=req.role,
+            difficulty=req.difficulty,
+            conversation_history=req.conversation_history
+        )
+        
+        # Try to save to DB
+        try:
+            db: Client = get_db()
+            db.table("interview_sessions").update({
+                "score": report.get("overall_score", 0),
+                "ai_feedback": report
+            }).eq("session_id", req.session_id).execute()
+        except Exception as db_err:
+            print(f"DB update warning for report: {db_err}")
+        
+        return report
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.post('/evaluate')
 async def evaluate_response(
     req: InterviewEvaluateRequest,
     user_id: str = Depends(get_current_user)
 ):
+    """Legacy evaluate endpoint for backward compatibility."""
     try:
-        # Get session context for better evaluation
-        session_data = _sessions.get(req.session_id, {})
-        role = session_data.get("role", "Software Engineer")
-        questions = session_data.get("questions", [])
-        current_q = session_data.get("current_q", 0)
-        
-        # Get the current question being answered
-        question = questions[current_q] if current_q < len(questions) else "Interview question"
-        
-        # Evaluate with AI
         evaluation = await evaluate_interview_response(
-            role, 
-            question, 
+            "Software Engineer", 
+            "Interview question", 
             req.transcribed_text
         )
-        
-        # Advance question counter
-        if session_data:
-            session_data["current_q"] = current_q + 1
-            session_data["scores"].append({
-                "technical": evaluation["technical_accuracy"],
-                "communication": evaluation["communication"],
-                "confidence": evaluation.get("confidence", 70)
-            })
         
         return {
             "score_technical": evaluation["technical_accuracy"],
             "score_communication": evaluation["communication"],
-            "score_confidence": evaluation.get("confidence", 70),
-            "feedback": evaluation["feedback"],
-            "improved_answer_hint": evaluation.get("improved_answer_hint", ""),
-            "strengths": evaluation.get("strengths", []),
-            "improvements": evaluation.get("improvements", [])
+            "feedback": evaluation["feedback"]
         }
     except Exception as e:
          raise HTTPException(status_code=500, detail=str(e))
-
-@router.post('/end')
-async def end_session(
-    req: dict,
-    user_id: str = Depends(get_current_user)
-):
-    """End the interview session and return a full report."""
-    session_id = req.get("session_id")
-    session_data = _sessions.pop(session_id, None)
-    
-    if not session_data or not session_data.get("scores"):
-        return {
-            "overall_score": 0,
-            "total_questions": 0,
-            "summary": "No data available for this session."
-        }
-    
-    scores = session_data["scores"]
-    avg_tech = sum(s["technical"] for s in scores) // len(scores)
-    avg_comm = sum(s["communication"] for s in scores) // len(scores)
-    avg_conf = sum(s["confidence"] for s in scores) // len(scores)
-    overall = (avg_tech + avg_comm + avg_conf) // 3
-    
-    return {
-        "overall_score": overall,
-        "avg_technical": avg_tech,
-        "avg_communication": avg_comm,
-        "avg_confidence": avg_conf,
-        "total_questions": len(scores),
-        "role": session_data["role"],
-        "summary": f"You answered {len(scores)} questions for the {session_data['role']} role with an overall score of {overall}%."
-    }
